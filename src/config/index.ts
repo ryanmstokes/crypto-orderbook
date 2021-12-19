@@ -1,10 +1,11 @@
-import list from 'config/list'
+import tables from 'config/tables'
+import { Config } from 'types'
 
-const config = {
+const config: Config = {
   title: 'Orderbook Test',
   description: 'A crypto orderbook application built with Typescript, React, Redux, Websockets, and React Testing Library.',
   author: 'Ryan Stokes',
-  list
+  tables
 }
 
 export default config

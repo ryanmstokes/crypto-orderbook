@@ -1,21 +1,10 @@
-import { ConfigState } from 'types'
+import { Config } from 'types'
+import tables from 'store/features/tables/initial-state'
 
-const initialState: ConfigState = {
+const config: Config = {
   title: 'Config Title',
   description: 'App description goes here',
   author: 'Unknow dev',
-  list: {
-    title: 'List title',
-    variants: [
-      {
-        title: "Item Title",
-        inc: [0, 1, 2]
-      },
-      {
-        title: "Item Title 2",
-        inc: [0, 0.5, 0.75]
-      }
-    ]
-  }
+  tables: tables
 }
-export default initialState
+export default config
