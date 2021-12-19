@@ -3,15 +3,15 @@ import config from 'store/features/config/initial-state'
 import { ConfigPayload } from 'types'
 
 export const configSlice = createSlice({
-  name: 'config',
+  name: 'tables',
   initialState: config,
   reducers: {
-    loadConfig: (state, action: ConfigPayload) => {
+    loadTables: (state, action: ConfigPayload) => {
       return action.payload
     },
   },
 })
 
-export const { loadConfig } = configSlice.actions
+export const { loadTables } = configSlice.actions
 
 export default configSlice.reducer

@@ -1,17 +1,33 @@
-interface List {
+/** TABLES */
+
+type List = {
   title: string,
-  variants: { title: string, inc: number[] }[]
+  inc: number[],
+  prices?: number[]
 }
 
-interface ConfigState {
+type Lists = {
+  title: string,
+  lists: {
+    [name: string]: List
+  }
+}
+
+type Tables = {
+  tables: Lists
+}
+
+/** CONFIG */
+
+interface Config {
   title: string,
   author: string,
   description: string,
-  list: List
+  tables: Lists
 }
 
-interface ConfigStatePayload {
-  payload: ConfigState
+interface ConfigPayload {
+  payload: Config
 }
 
-export type { List, ConfigState, ConfigStatePayload }
+export type { Config, ConfigPayload, Tables, Lists, List }
