@@ -1,23 +1,32 @@
+
+import Table from 'components/tables/table'
+import { Prices } from 'types'
+import 'components/tables/style.css'
 import { useSelector } from 'react-redux'
 import { RootState } from 'store'
-import Table from 'components/table'
 
 const Tables = () => {
-  const tables = useSelector((state: RootState) => state.config.tables)
-  const listKeys = Object.keys(tables.lists)
+  const title: string = useSelector((state: RootState) => state.lists.title)
+  const current: string = useSelector((state: RootState) => state.lists.current)
+  const prices: Prices = useSelector((state: RootState) => state.lists.lists[current].prices)
+
   return (
-    <>
-      <div>{tables.title}</div>
-      {
-        listKeys.map((key: string) => {
-          return (
-            <div data-testid={"Table_" + key} key={"Table" + key} >
-              <Table  {...tables.lists[key]} />
-            </div>
-          )
-        })
-      }
-    </>
+    <div className="tables">
+      <h2>{title}</h2>
+      <h3>{current}</h3>
+      <div className="tablesWrap">
+        {
+          Object.keys(prices).map((key: string) => {
+            return (
+              <div data-testid={"Table_" + key} key={"Table_wrap" + key} >
+                {key}
+                <Table {...prices[key]} key={"Table" + key} />
+              </div>
+            )
+          })
+        }
+      </div>
+    </div>
   )
 }
 
