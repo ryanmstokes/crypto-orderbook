@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import configReducer from 'store/features/config'
-
+import tablesSlice from 'store/features/tables'
 export const store = configureStore({
   reducer: {
     config: configReducer,
+    lists: tablesSlice
   }
 })
 
