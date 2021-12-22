@@ -4,11 +4,12 @@ import App from 'components/app'
 import configureStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import config from 'store/features/config/initial-state'
+import tables from 'store/features/tables/initial-state'
 import GetValByPropInArr from 'utils/testing/get-val-by-prop-in-arr'
 
 describe("App component", () => {
   const mockStore = configureStore()
-  const store = mockStore({ config: config })
+  const store = mockStore({ config: config, lists: tables })
   render(<Provider store={store}><App /></Provider>)
 
   it('renders the child component', () => {

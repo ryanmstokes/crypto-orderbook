@@ -1,10 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import "@testing-library/jest-dom/extend-expect"
-import Row from 'components/table/row'
+import Row from 'components/tables/table/row'
 
 describe("Row component", () => {
-  render(<Row />)
+  const values = { price: 1, amount: 100 }
+
+  render(<Row {...values} />)
   it('renders the row component', () => {
-    expect(screen.getByTestId('Row')).toBeTruthy()
+    screen.getByText(1)
+    screen.getByText(100)
   })
 })
