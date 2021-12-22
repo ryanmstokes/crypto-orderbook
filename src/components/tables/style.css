@@ -1,0 +1,11 @@
+.tables{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.tablesWrap{
+  justify-content: center;
+  display: flex;
+}
