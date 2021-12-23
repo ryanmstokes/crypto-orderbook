@@ -12,6 +12,8 @@ export const configSlice = createSlice({
   },
 })
 
+export * from 'store/features/config/hooks'
+
 export const { loadConfig } = configSlice.actions
 
 export default configSlice.reducer
