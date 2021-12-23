@@ -14,7 +14,8 @@ const WsManager = () => {
     interval = setInterval(() => dispatch(loadTables({ asks, bids })), 2000)
   }
 
-  const ws = new WebSocket("wss://www.cryptofacilities.com/ws/v1");
+  const ws = new WebSocket("wss://www.cryptofacilities.com/ws/v1")
+
   const wsMessage: { [name: string]: string | string[] } = { "event": "subscribe", "feed": "book_ui_1", "product_ids": ["PI_XBTUSD"] }
 
   ws.onopen = (event) => {
@@ -23,7 +24,7 @@ const WsManager = () => {
 
   ws.onmessage = (event) => {
 
-    const json = JSON.parse(event.data);
+    const json = JSON.parse(event.data)
     try {
       if ((json.event = "data")) {
         if (json.feed === "book_ui_1_snapshot") {
@@ -40,7 +41,7 @@ const WsManager = () => {
         }
       }
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
   }
 
