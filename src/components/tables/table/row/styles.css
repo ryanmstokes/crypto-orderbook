@@ -2,4 +2,13 @@
   display: flex;
   justify-content: center;
   flex-direction: row;
+  display: flex; 
+  display: -webkit-flex;          
+  flex-direction: row;  
+  -webkit-flex-direction: row;   
+  flex-grow: 0;  
+  -webkit-flex-grow: 0;          
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;         
+  width: 100%;
 }

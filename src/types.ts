@@ -1,8 +1,9 @@
 /** TABLES */
 
-type Values = { amount: number, price: number }
+type Values = { amount: number, price: number, total: number }
 
 type Price = {
+  title: string,
   values: Values[]
 }
 
@@ -27,6 +28,7 @@ interface ListPayload {
 type Lists = {
   title: string,
   current: string,
+  headers: { [name: string]: string },
   lists: {
     [name: string]: List
   }

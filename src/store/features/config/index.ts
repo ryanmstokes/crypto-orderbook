@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import config from 'store/features/config/initial-state'
 import { ConfigPayload } from 'types'
+import { useSelector } from 'react-redux'
+import { RootState } from 'store'
 
 export const configSlice = createSlice({
   name: 'config',
@@ -11,6 +13,8 @@ export const configSlice = createSlice({
     },
   },
 })
+
+export * from 'store/features/config/hooks'
 
 export const { loadConfig } = configSlice.actions
 
