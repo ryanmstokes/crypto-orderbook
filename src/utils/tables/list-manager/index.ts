@@ -1,4 +1,4 @@
-const ListManager = (list: number[][], updatedList: number[][]) => {
+const ListManager = (list: number[][], updatedList: number[][], sort: string) => {
   let clonedList = [...list]
   let exists = false
   if (updatedList && updatedList.length > 0) {
@@ -10,16 +10,25 @@ const ListManager = (list: number[][], updatedList: number[][]) => {
               Object.assign(clonedList[index][1], B[1])
               exists = true
             }
+          } else {
+            delete clonedList[index]
+            clonedList = clonedList.filter(Boolean).filter((x: number[]) => { return x !== undefined })
           }
         }
       })
       if (!exists) {
-        clonedList.push(B)
-        clonedList = clonedList.filter(Boolean).filter((x: number[]) => { return x[1] > 0 }).sort(function (x, y) { return x[0] - y[0] }).slice(0, 30)
+        if (B[1] > 0) {
+          clonedList.push(B)
+        }
+        if (sort === "ASC") {
+          clonedList = clonedList.sort(function (x, y) { return x[0] - y[0] })
+        }
+        if (sort === "DESC") {
+          clonedList = clonedList.sort(function (x, y) { return y[0] - x[0] })
+        }
       }
     })
   }
-
   return clonedList
 }
 
