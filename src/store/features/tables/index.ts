@@ -10,11 +10,7 @@ export const tablesSlice = createSlice({
   initialState: tables,
   reducers: {
     loadTables: (state, action: ListsPayload) => {
-      /** Convert number[][] to {price:number, amount: number}[]
-       * and save to store.
-       */
       Object.keys(state.lists).forEach((key) => {
-
         Object.keys(action.payload).forEach((key2) => {
           let cumulativeTotal = 0
           let decoratedObjectArray: Values[] = []
