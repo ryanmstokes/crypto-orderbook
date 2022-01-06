@@ -8,10 +8,10 @@ import WsManager from 'services/ws-manager'
 import { useTitle } from 'store/features/config'
 
 const App = () => {
-
   const dispatch = useDispatch()
   dispatch(loadConfig(config))
   WsManager()
+
   return (
     <div className="App" data-testid="App">
       <PageMeta />

@@ -1,10 +1,8 @@
 
 import Table from 'components/tables/table'
 import 'components/tables/style.css'
-import { useTables } from 'store/features/tables'
 
-const Tables = () => {
-  const { title, current, tables } = useTables()
+const Tables = ({ title, current, tables }: any) => {
   return (
     <div className="tables">
       <h2>{title}</h2>
