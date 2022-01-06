@@ -11,29 +11,35 @@ const tables: Lists = {
   lists: {
     XBTC: {
       title: "XBTC",
-      inc: [0.25, 0.75, 1],
+      inc: [0.5, 1, 2.5],
+      ticker: 0.5,
       prices: {
         bids: {
+          sortBy: "DESC",
           title: "bids",
-          values: [{ price: 0, amount: 2, total: 2 }, { price: 1, amount: 2, total: 2 }]
+          values: [{ price: 1000, amount: 100, total: 1000 }, { price: 1001, amount: 101, total: 1101 }]
         },
         asks: {
+          sortBy: "ASC",
           title: "asks",
-          values: [{ price: 0, amount: 2, total: 2 }, { price: 1, amount: 2, total: 2 }]
+          values: [{ price: 1000, amount: 100, total: 1000 }, { price: 1001, amount: 101, total: 1101 }]
         }
       }
     },
     ETH: {
       title: "ETH",
-      inc: [0.50, 1, 1.5],
+      inc: [0.05, 0.1, 0.25],
+      ticker: 0.05,
       prices: {
         bids: {
+          sortBy: "DESC",
           title: "bids",
-          values: [{ price: 0, amount: 2, total: 2 }, { price: 1, amount: 2, total: 2 }]
+          values: [{ price: 1000, amount: 100, total: 1000 }, { price: 1001, amount: 101, total: 1101 }]
         },
         asks: {
+          sortBy: "ASC",
           title: "asks",
-          values: [{ price: 0, amount: 2, total: 2 }, { price: 1, amount: 2, total: 2 }]
+          values: [{ price: 1000, amount: 100, total: 1000 }, { price: 1001, amount: 101, total: 1101 }]
         }
       }
     }

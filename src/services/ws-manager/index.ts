@@ -1,24 +1,17 @@
-import { loadTables } from 'store/features/tables'
+import { setCompiled } from 'store/features/tables'
 import ListManager from 'utils/tables/list-manager'
 import { useDispatch } from 'react-redux'
-import TickeredList from 'utils/tickered-list'
+import { loadTables } from 'store/features/tables'
 
-let UILoaded = false
-let asks: number[][] = []
-let bids: number[][] = []
+const deepClone = (object: any) => JSON.parse(JSON.stringify(object))
 
 const WsManager = () => {
   const dispatch = useDispatch()
 
-  let interval: ReturnType<typeof setInterval>
-  const setUpUIUpdate = () => {
-    interval = setInterval(() => {
-      dispatch(loadTables({
-        asks: [...TickeredList(asks).slice(0, 15)],
-        bids: [...TickeredList(bids).slice(0, 15)]
-      }))
-    }, 1000)
-  }
+  let asks: number[][] = []
+  let bids: number[][] = []
+  let counter = 0
+  let UIRefreshRate = 150
 
   const ws = new WebSocket("wss://www.cryptofacilities.com/ws/v1")
 
@@ -33,16 +26,50 @@ const WsManager = () => {
     const json = JSON.parse(event.data)
     try {
       if ((json.event = "data")) {
+        /** Turn this into switch  statement */
         if (json.feed === "book_ui_1_snapshot") {
-          asks = [...json.asks]
-          bids = [...json.bids]
+          asks = deepClone(json.asks)
+          bids = deepClone(json.bids)
+          dispatch(setCompiled([
+            {
+              title: "asks",
+              sortBy: "DESC",
+              values: deepClone(json.asks)
+            },
+            {
+              title: "bids",
+              sortBy: "ASC",
+              values: deepClone(json.bids)
+            },
+          ]
+          ))
         }
         if (json.feed === "book_ui_1") {
-          asks = [...ListManager(asks, json.asks, "ASC")]
-          bids = [...ListManager(bids, json.bids, "DESC")]
-          if (!UILoaded) {
-            setUpUIUpdate()
-            UILoaded = true
+          if (counter <= UIRefreshRate) {
+            counter += 1
+          }
+
+          asks = deepClone(ListManager(asks, json.asks))
+          bids = deepClone(ListManager(bids, json.bids))
+
+          dispatch(setCompiled({
+            asks:
+            {
+              title: "asks",
+              sortBy: "DESC",
+              values: deepClone(asks)
+            },
+            bids:
+            {
+              title: "bids",
+              sortBy: "ASC",
+              values: deepClone(bids)
+            },
+          }
+          ))
+          if (counter === UIRefreshRate) {
+            dispatch(loadTables())
+            counter = 0
           }
         }
       }
@@ -52,7 +79,7 @@ const WsManager = () => {
   }
 
   ws.onclose = () => {
-    clearInterval(interval)
+    /** handle closed sockets */
   }
 
 }

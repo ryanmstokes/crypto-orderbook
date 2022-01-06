@@ -4,7 +4,12 @@ type Values = { amount: number, price: number, total: number }
 
 type Price = {
   title: string,
+  sortBy: string,
   values: Values[]
+}
+
+interface PricePayload {
+  payload: Price[]
 }
 
 type Prices = {
@@ -18,7 +23,10 @@ interface PricesPayload {
 type List = {
   title: string,
   inc: number[],
-  prices: Prices
+  ticker: number,
+  prices: Prices,
+  compiled?: Prices,
+  sorted?: Prices
 }
 
 interface ListPayload {
@@ -34,9 +42,14 @@ type Lists = {
   }
 }
 
+type Compiled = {
+  sortBy: string,
+  list: number[][],
+}
+
 interface ListsPayload {
   payload: {
-    [name: string]: number[][]
+    [name: string]: Compiled
   }
 }
 
