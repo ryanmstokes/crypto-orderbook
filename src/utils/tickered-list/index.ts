@@ -1,17 +1,18 @@
-const deepClone = (object: any) => JSON.parse(JSON.stringify(object))
+import deepClone from 'utils/deep-clone'
 
-const TickeredList = (clonedList: any, sort: string, tickerSize: number) => {
+const TickeredList = (clonedList: any, sort: string, tickerSize: any) => {
   let tickeredList: any = []
   let currentAmount = 0
   let currentPrice = 0
   let currentTickerRange: number = 0
+  /** check the number start on a ticker size if not round down or up */
   const sortedList = deepClone(clonedList.sort(function (x: any, y: any) { return x[0] - y[0] }))
 
   for (var i = 0, n = sortedList.length; i < n; ++i) {
 
     const item = sortedList[i]
     if (Number.isInteger(item[0] / tickerSize)) {
-      currentPrice = item[0]
+      currentPrice = Number(item[0].toFixed(2))/** .toFixed(2)*/
       currentAmount += item[1]
       currentTickerRange = currentPrice + tickerSize
 
@@ -24,6 +25,7 @@ const TickeredList = (clonedList: any, sort: string, tickerSize: number) => {
 
     } else {
       currentPrice = Math.floor(item[0] / tickerSize) * tickerSize
+      currentPrice = Number(currentPrice.toFixed(2))
       currentAmount += item[1]
 
       currentTickerRange = currentPrice + tickerSize
@@ -36,7 +38,7 @@ const TickeredList = (clonedList: any, sort: string, tickerSize: number) => {
       }
     }
   }
-  if (sort === "ASC") {
+  if (sort === "DESC") {
     tickeredList = deepClone(tickeredList.sort(function (x: any, y: any) { return y[0] - x[0] }))
   }
 

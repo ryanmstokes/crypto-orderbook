@@ -3,12 +3,11 @@ import { Price, Values } from 'types'
 import TableHeaders from 'components/tables/table/table-headers'
 
 const Table = (list: Price) => {
-  console.log('listlistlist', list)
   return (
     <div key={"tablexyy" + list.title} className={"tablexyy" + list.title}>
       {list.title}
       {
-        list.values.map((values: Values, index: number) => {
+        list.values?.map((values: Values, index: number) => {
           return (
             <>
               {index === 0 ? <TableHeaders /> : null}

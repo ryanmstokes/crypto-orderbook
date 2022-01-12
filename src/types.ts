@@ -5,7 +5,7 @@ type Values = { amount: number, price: number, total: number }
 type Price = {
   title: string,
   sortBy: string,
-  values: Values[]
+  values?: Values[]
 }
 
 interface PricePayload {
@@ -24,6 +24,7 @@ type List = {
   title: string,
   inc: number[],
   ticker: number,
+  product_ids: string,
   prices: Prices,
   compiled?: Prices,
   sorted?: Prices
@@ -34,12 +35,15 @@ interface ListPayload {
 }
 
 type Lists = {
+  loaded: boolean,
   title: string,
-  current: string,
   headers: { [name: string]: string },
+  url: string,
+  feed: string,
   lists: {
     [name: string]: List
-  }
+  },
+  orderbooks?: { [name: string]: { title: string, inc: any, products: string[], current: string, values?: any, headers?: any, compiled?: any, ticker?: number, wsInstance?: any } }
 }
 
 type Compiled = {
@@ -63,7 +67,8 @@ interface Config {
   title: string,
   author: string,
   description: string,
-  tables: Lists
+  tables?: Lists | undefined,
+  orderbooks: { [name: string]: { title: string, products: string[], current: string, values?: any, headers?: any } }
 }
 
 interface ConfigPayload {
