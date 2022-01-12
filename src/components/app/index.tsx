@@ -1,22 +1,37 @@
 import 'components/app/style.css'
 import PageMeta from 'components/app/meta-tags'
-import { loadConfig } from 'store/features/config'
+import OrderBook from 'components/orderbook'
+import { UseTitle, InitApp } from 'store/features/config'
+import { UseLoaded } from 'store/features/tables'
+import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import config from 'config'
-import Widget from 'components/widget'
-import WsManager from 'services/ws-manager'
-import { useTitle } from 'store/features/config'
 
 const App = () => {
+
   const dispatch = useDispatch()
-  dispatch(loadConfig(config))
-  WsManager()
+
+  useEffect(() => {
+    dispatch(InitApp())
+  }, [dispatch])
+
+  const title: string = UseTitle()
+  const loaded = UseLoaded()
 
   return (
-    <div className="App" data-testid="App">
-      <PageMeta />
-      <h1>{useTitle()}</h1>
-      <Widget />
+    <div>
+      <div className="App" data-testid="App" >
+        <PageMeta />
+        {
+          loaded ? (
+            <div>
+              <h1>{title}</h1>
+              <OrderBook pair="btc_eth" />
+              {/* <OrderBook pair="eth_btc" /> */}
+            </div>
+          ) : <div>Loading</div>
+        }
+      </div >
+
     </div>
   )
 }

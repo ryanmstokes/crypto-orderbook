@@ -5,7 +5,19 @@ const config: Config = {
   title: 'Orderbook Test',
   description: 'A crypto orderbook application built with Typescript, React, Redux, Websockets, and React Testing Library.',
   author: 'Ryan Stokes',
-  tables
+  tables,
+  orderbooks: {
+    btc_eth: {
+      title: 'Orderbook 1',
+      products: ['XBTC', 'ETH'],
+      current: 'XBTC'
+    },
+    eth_btc: {
+      title: 'Orderbook 1',
+      products: ['ETH', 'XBTC'],
+      current: 'ETH'
+    }
+  }
 }
 
 export default config

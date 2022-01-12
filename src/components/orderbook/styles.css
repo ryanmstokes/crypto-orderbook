@@ -1,0 +1,11 @@
+.orderbook{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.toggle{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
