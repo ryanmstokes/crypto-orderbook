@@ -2,52 +2,63 @@ import { useSelector } from 'react-redux'
 import { RootState } from 'store'
 import TypedKeys from 'utils/typed-keys'
 
-export const useTables = () => {
+export const UseLoaded = (): any => {
+  return useSelector((state: RootState): boolean => {
+    return state.lists.loaded
+  })
+}
+
+export const UseTables = (id: string, currentSymbol: any) => {
   return useSelector((state: RootState) => {
 
-    const current = state.lists.current
     let prices: any
 
-    if (state.lists.lists[current].sorted) {
-      prices = TypedKeys(state.lists.lists[current].sorted).map(
-        (key) => state.lists.lists[current].sorted![key]
+    if (state.lists.orderbooks![id].values) {
+      prices = TypedKeys(state.lists.orderbooks![id].values).map(
+        (key) => state.lists.orderbooks![id].values[key]
       )
     }
-
     let tableData: any = false
 
     if (prices !== undefined) {
       tableData = {
-        title: state.lists.title,
-        current: current,
-        tables: prices.reverse()
+        title: state.lists.orderbooks![id].title,
+        current: state.lists.orderbooks![id].current,
+        tables: prices
       }
     }
     return tableData
   })
 }
 
-export const useTableHeaders = () => {
+export const UseTableHeaders = () => {
   const headers: string[] = useSelector((state: RootState) =>
     TypedKeys(state.lists.headers).map((key) =>
       state.lists.headers[key]))
   return headers
 }
 
-type numberArray = number[]
-export const useTickers = (): number[] => {
-  const tickers = useSelector((state: RootState): number[] => {
-    const current = state.lists.current
-    const tickers: numberArray = state.lists.lists[current].inc
-    return tickers
-  })
-  return tickers
-}
-
-export const useTickerSize = (): number => {
-  return useSelector((state: RootState): number => {
-    const current = state.lists.current
-    return state.lists.lists[current].ticker
+export const UseTickers = (id: string): number[] => {
+  return useSelector((state: RootState): number[] => {
+    return state.lists.orderbooks![id].inc
   })
 }
 
+
+export const UseWSConfig = (symbol: any): any => {
+  return useSelector((state: RootState): any => {
+    return {
+      url: state.lists.url,
+      feed: state.lists.feed,
+      symbol: state.lists.lists[symbol].product_ids
+    }
+  })
+}
+
+export const UseOrderbooks = (id: string) => {
+  let current = useSelector((state: RootState) => state.lists.orderbooks![id].current)
+  return {
+    id: id,
+    current: current,
+  }
+}

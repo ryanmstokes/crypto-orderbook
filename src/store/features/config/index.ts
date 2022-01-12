@@ -1,19 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
 import config from 'store/features/config/initial-state'
-import { ConfigPayload } from 'types'
+
+import LoadConfigReducer from 'store/features/config/reducers/load-config'
 
 export const configSlice = createSlice({
   name: 'config',
   initialState: config,
   reducers: {
-    loadConfig: (state, action: ConfigPayload) => {
-      return action.payload
-    },
+    InitApp() { },
+    LoadConfig: LoadConfigReducer,
   },
 })
 
 export * from 'store/features/config/hooks'
 
-export const { loadConfig } = configSlice.actions
+export const { InitApp, LoadConfig } = configSlice.actions
 
 export default configSlice.reducer

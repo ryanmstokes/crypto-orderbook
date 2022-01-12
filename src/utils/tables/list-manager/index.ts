@@ -1,4 +1,4 @@
-const deepClone = (object: any) => JSON.parse(JSON.stringify(object))
+import deepClone from 'utils/deep-clone'
 
 const ListManager = (list: number[][], updatedList: number[][]) => {
 

@@ -8,6 +8,9 @@ import tables from 'store/features/tables/initial-state'
 import GetValByPropInArr from 'utils/testing/get-val-by-prop-in-arr'
 
 describe("App component", () => {
+  jest.mock("store/features/tables", () => ({
+    UseLoaded: () => true
+  }))
   const mockStore = configureStore()
   const store = mockStore({ config: config, lists: tables })
   render(<Provider store={store}><App /></Provider>)
