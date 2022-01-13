@@ -43,7 +43,20 @@ type Lists = {
   lists: {
     [name: string]: List
   },
-  orderbooks?: { [name: string]: { title: string, inc: any, products: string[], current: string, values?: any, headers?: any, compiled?: any, ticker?: number, wsInstance?: any } }
+  orderbooks?: {
+    [name: string]:
+    {
+      title: string,
+      inc: any,
+      products: string[],
+      current: string,
+      values?: any,
+      headers?: any,
+      compiled?: any,
+      ticker?: number,
+      wsInstance?: any,
+    }
+  }
 }
 
 type Compiled = {
@@ -68,7 +81,15 @@ interface Config {
   author: string,
   description: string,
   tables?: Lists | undefined,
-  orderbooks: { [name: string]: { title: string, products: string[], current: string, values?: any, headers?: any } }
+  orderbooks: {
+    [name: string]: {
+      title: string,
+      products: string[],
+      current: string,
+      values?: any,
+      headers?: any
+    }
+  }
 }
 
 interface ConfigPayload {
