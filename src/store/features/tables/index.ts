@@ -9,8 +9,8 @@ import SetIncReducer from 'store/features/tables/reducers/set-inc'
 import SetLoadedReducer from 'store/features/tables/reducers/set-loaded'
 import SetTickerSizeReducer from 'store/features/tables/reducers/set-ticker-size'
 import SetCompiledReducer from 'store/features/tables/reducers/set-compiled'
-import SetOrderBooksReducer from 'store//features/tables/reducers/set-order-books'
-import SetCurrentProductReducer from 'store//features/tables/reducers/set-current-product'
+import SetOrderBooksReducer from 'store/features/tables/reducers/set-order-books'
+import SetCurrentProductReducer from 'store/features/tables/reducers/set-current-product'
 import SetWebSocketReducer from 'store/features/tables/reducers/set-web-socket'
 import CloseWebSocketReducer from 'store/features/tables/reducers/close-web-socket'
 
@@ -47,7 +47,7 @@ export const {
   SetCurrentProduct,
   SetInc,
   SetWebSocket,
-  CloseWebSocket
+  CloseWebSocket,
 } = tablesSlice.actions
 
 export default tablesSlice.reducer

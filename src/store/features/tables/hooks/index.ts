@@ -10,24 +10,27 @@ export const UseLoaded = (): any => {
 
 export const UseTables = (id: string, currentSymbol: any) => {
   return useSelector((state: RootState) => {
+    if (state.lists.orderbooks![id].current !== 'undefined') {
+      let prices: any
 
-    let prices: any
-
-    if (state.lists.orderbooks![id].values) {
-      prices = TypedKeys(state.lists.orderbooks![id].values).map(
-        (key) => state.lists.orderbooks![id].values[key]
-      )
-    }
-    let tableData: any = false
-
-    if (prices !== undefined) {
-      tableData = {
-        title: state.lists.orderbooks![id].title,
-        current: state.lists.orderbooks![id].current,
-        tables: prices
+      if (state.lists.orderbooks![id].values) {
+        prices = TypedKeys(state.lists.orderbooks![id].values).map(
+          (key) => state.lists.orderbooks![id].values[key]
+        )
       }
+      let tableData: any = false
+
+      if (prices !== undefined) {
+        tableData = {
+          title: state.lists.orderbooks![id].title,
+          current: state.lists.orderbooks![id].current,
+          tables: prices
+        }
+      }
+      return tableData
+    } else {
+      return undefined
     }
-    return tableData
   })
 }
 
