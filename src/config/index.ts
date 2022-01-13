@@ -15,7 +15,7 @@ const config: Config = {
     eth_btc: {
       title: 'Orderbook 1',
       products: ['ETH', 'XBTC'],
-      current: 'ETH'
+      current: 'ETH',
     }
   }
 }

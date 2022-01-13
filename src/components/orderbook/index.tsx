@@ -1,55 +1,48 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import Tables from 'components/tables'
 import 'components/orderbook/styles.css'
-import Select from 'components/inputs/select'
-import { UseTickers, SetTickerSize } from 'store/features/tables'
-import Button from 'components/inputs/button'
 import WsManager from 'services/ws-manager'
-import { CloseWebSocket } from 'store/features/tables'
-import { UseWSConfig, UseTables, SetCurrentProduct } from 'store/features/tables'
-import { UseOrderbooks } from 'store/features/tables'
+import { UseWSConfig, UseTables, UseOrderbooks, CloseWebSocket } from 'store/features/tables'
+import GroupingSelect from 'components/inputs/grouping-select'
+import Tables from 'components/tables'
+import ToggleProducts from 'components/inputs/toggle-products'
+import KillFeed from 'components/inputs/kill-feed'
 
 const OrderBook = ({ pair }: any) => {
   const dispatch = useDispatch()
-  const { id, current } = UseOrderbooks(pair)
+  const [wsConnection, setWsConnection] = useState(true)
 
+  const { id, current } = UseOrderbooks(pair)
   let { url, feed, symbol } = UseWSConfig(current)
   let tableData = UseTables(id, current)
 
   useEffect(() => {
-    WsManager(id, current, url, feed, symbol, dispatch)
-  }, [id, current, url, feed, symbol, dispatch])
+    if (wsConnection) { WsManager(id, current, url, feed, symbol, dispatch) }
+  }, [id, current, url, feed, symbol, dispatch, wsConnection])
 
-  const setTicker = (size: number) => {
-    dispatch(SetTickerSize({ id: id, ticker: Number(size) }))
-  }
-
-  const tickerOptions: any = {
-    list: UseTickers(id),
-    callback: setTicker
-  }
-
-  const toggle = () => {
+  const closeDown = () => {
+    setWsConnection(false)
     dispatch(CloseWebSocket(id))
-    dispatch(SetCurrentProduct(id))
   }
 
-  const toggleOptions: any = {
-    title: "toggle",
-    callback: toggle
+  const toggleWebSocket = () => {
+    wsConnection ? closeDown() : setWsConnection(true)
   }
+
+  const connectionMessage = wsConnection ?
+    <div>Websocket live</div>
+    : <div>Websocket Disconnected</div>
 
   return (
     <div data-testid="orderbook" className="orderbook">
       {
         tableData ?
           <div>
-            <div>
-              Grouping: <Select {...tickerOptions} />
-            </div>
+            <GroupingSelect id={id} />
             <Tables {...tableData} />
-            <div className="toggle"><Button {...toggleOptions} /></div>
+            <ToggleProducts id={id} />
+            <KillFeed id={id} callback={toggleWebSocket} />
+            {connectionMessage}
           </div>
           : <div>Loading</div>
       }
