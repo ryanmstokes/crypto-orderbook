@@ -37,7 +37,9 @@ export const UseTables = (id: string, currentSymbol: any) => {
 export const UseTableHeaders = () => {
   const headers: string[] = useSelector((state: RootState) =>
     TypedKeys(state.lists.headers).map((key) =>
-      state.lists.headers[key]))
+      state.lists.headers[key]
+    )
+  )
   return headers
 }
 
