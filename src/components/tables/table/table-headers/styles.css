@@ -3,6 +3,7 @@
     /* padding-left: 15px; */
     /* padding-right: 15px; */
     width: 100%;
+    border-bottom: 1px solid black;
 }
 .headerCell{
   display: flex;

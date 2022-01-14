@@ -1,15 +1,15 @@
 /** TABLES */
 
-type Values = { amount: number, price: number, total: number }
+type Values = {
+  amount: number,
+  price: number,
+  total: number
+}
 
 type Price = {
   title: string,
   sortBy: string,
   values?: Values[]
-}
-
-interface PricePayload {
-  payload: Price[]
 }
 
 type Prices = {
@@ -25,9 +25,22 @@ type List = {
   inc: number[],
   ticker: number,
   product_ids: string,
-  prices: Prices,
-  compiled?: Prices,
-  sorted?: Prices
+  prices: Prices
+}
+
+interface Orderbooks {
+  [name: string]:
+  {
+    title: string,
+    inc: number[],
+    products: string[],
+    current: string,
+    values?: any,
+    headers?: any,
+    compiled?: any,
+    ticker?: number,
+    wsInstance?: any,
+  }
 }
 
 interface ListPayload {
@@ -43,20 +56,7 @@ type Lists = {
   lists: {
     [name: string]: List
   },
-  orderbooks?: {
-    [name: string]:
-    {
-      title: string,
-      inc: any,
-      products: string[],
-      current: string,
-      values?: any,
-      headers?: any,
-      compiled?: any,
-      ticker?: number,
-      wsInstance?: any,
-    }
-  }
+  orderbooks?: Orderbooks
 }
 
 type Compiled = {
@@ -86,8 +86,8 @@ interface Config {
       title: string,
       products: string[],
       current: string,
-      values?: any,
-      headers?: any
+      values?: Values[],
+      headers?: { [name: string]: string }
     }
   }
 }
