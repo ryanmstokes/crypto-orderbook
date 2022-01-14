@@ -1,8 +1,6 @@
 import 'components/tables/table/table-headers/styles.css'
-import { UseTableHeaders } from 'store/features/tables'
 
-const TableHeaders = () => {
-  const headers = UseTableHeaders()
+const TableHeaders = ({ headers }: { headers: string[] }) => {
   return (
     <div className="headers" key="TablHeaders">
       {

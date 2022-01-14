@@ -1,15 +1,12 @@
 import Cell from 'components/tables/table/cell'
 import 'components/tables/table/row/styles.css'
-import { Values } from 'types'
-import typedKeys from 'utils/typed-keys'
+// import { Values } from 'types'
 
-const Row = (values: Values) => {
+const Row = ({ values }: any) => {
   return (
     <div className="row">
       {
-        typedKeys(values).map((key, index) => {
-          return (<Cell value={values[key]} key={"Cell" + index} />)
-        })
+        values.map((item: any) => <Cell value={item} key={"Cell"} />)
       }
     </div>
   )

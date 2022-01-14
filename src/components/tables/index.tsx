@@ -1,4 +1,3 @@
-
 import Table from 'components/tables/table'
 import 'components/tables/style.css'
 
@@ -12,7 +11,7 @@ const Tables = ({ title, current, tables }: any) => {
           tables.map((table: any, index: number) => {
             return (
               <div data-testid={"Table_" + index} key={"Table_wrap" + index} >
-                <Table {...table} key={"Table" + index} />
+                <Table table={table} id={index} key={"Table" + index} />
               </div>
             )
           })
