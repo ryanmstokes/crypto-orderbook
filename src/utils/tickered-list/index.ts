@@ -1,12 +1,12 @@
 import deepClone from 'utils/deep-clone'
 
-const TickeredList = (clonedList: any, sort: string, tickerSize: any) => {
+const TickeredList = (clonedList: any, sort: string, tickerSize: number) => {
   let tickeredList: any = []
   let currentAmount = 0
   let currentPrice = 0
   let currentTickerRange: number = 0
   /** check the number start on a ticker size if not round down or up */
-  const sortedList = deepClone(clonedList.sort(function (x: any, y: any) { return x[0] - y[0] }))
+  const sortedList = deepClone(clonedList.sort(function (x: number[], y: number[]) { return x[0] - y[0] }))
 
   for (var i = 0, n = sortedList.length; i < n; ++i) {
 
@@ -39,7 +39,7 @@ const TickeredList = (clonedList: any, sort: string, tickerSize: any) => {
     }
   }
   if (sort === "DESC") {
-    tickeredList = deepClone(tickeredList.sort(function (x: any, y: any) { return y[0] - x[0] }))
+    tickeredList = deepClone(tickeredList.sort(function (x: number[], y: number[]) { return y[0] - x[0] }))
   }
 
   return tickeredList.slice(0, 15)

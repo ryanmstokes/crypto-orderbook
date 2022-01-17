@@ -19,12 +19,12 @@ const tables: Lists = {
         bids: {
           sortBy: "DESC",
           title: "bids",
-          values: [{ price: 1000, amount: 100, total: 100 }, { price: 1000, amount: 1001, total: 1101 }]
+          values: [{ depth: 20, cells: { price: 1000, amount: 100, total: 100 } }, { depth: 20, cells: { price: 1000, amount: 1001, total: 1101 } }]
         },
         asks: {
           sortBy: "ASC",
           title: "asks",
-          values: [{ price: 1000, amount: 100, total: 100 }, { price: 1000, amount: 1001, total: 1101 }]
+          values: [{ depth: 20, cells: { price: 1000, amount: 100, total: 100 } }, { depth: 20, cells: { price: 1000, amount: 1001, total: 1101 } }]
         }
       },
     },
@@ -37,12 +37,12 @@ const tables: Lists = {
         bids: {
           sortBy: "DESC",
           title: "bids",
-          values: [{ price: 1000, amount: 100, total: 100 }, { price: 1000, amount: 1001, total: 1101 }]
+          values: [{ depth: 20, cells: { price: 1000, amount: 100, total: 100 } }, { depth: 20, cells: { price: 1000, amount: 1001, total: 1101 } }]
         },
         asks: {
           sortBy: "ASC",
           title: "asks",
-          values: [{ price: 1000, amount: 100, total: 100 }, { price: 1000, amount: 1001, total: 1101 }]
+          values: [{ depth: 20, cells: { price: 1000, amount: 100, total: 100 } }, { depth: 20, cells: { price: 1000, amount: 1001, total: 1101 } }]
         }
       },
     }

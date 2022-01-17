@@ -2,13 +2,13 @@ import { useSelector } from 'react-redux'
 import { RootState } from 'store'
 import TypedKeys from 'utils/typed-keys'
 
-export const UseLoaded = (): any => {
+export const UseLoaded = () => {
   return useSelector((state: RootState): boolean => {
     return state.lists.loaded
   })
 }
 
-export const UseTables = (id: string, currentSymbol: any) => {
+export const UseTables = (id: string, currentSymbol: string) => {
   return useSelector((state: RootState) => {
     if (state.lists.orderbooks![id].current !== 'undefined') {
       let prices: any
@@ -18,6 +18,7 @@ export const UseTables = (id: string, currentSymbol: any) => {
           (key) => state.lists.orderbooks![id].values[key]
         )
       }
+
       let tableData: any = false
 
       if (prices !== undefined) {
@@ -50,8 +51,8 @@ export const UseTickers = (id: string): number[] => {
 }
 
 
-export const UseWSConfig = (symbol: any): any => {
-  return useSelector((state: RootState): any => {
+export const UseWSConfig = (symbol: string) => {
+  return useSelector((state: RootState) => {
     return {
       url: state.lists.url,
       feed: state.lists.feed,

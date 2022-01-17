@@ -1,11 +1,16 @@
 import 'components/tables/table/table-headers/styles.css'
 
-const TableHeaders = ({ headers }: { headers: string[] }) => {
+const TableHeaders = ({ headers, direction }: { headers: string[], direction: string }) => {
+  let directedHeaders = direction === 'reverse' ? [...headers].reverse() : headers
   return (
-    <div className="headers" key="TablHeaders">
+    <div className="headers" key="TableHeaders">
       {
-        headers.map((title: string, index: number) => {
-          return <div className="headerCell" key={'table_header' + index}>{title}</div>
+        directedHeaders.map((title: string, index: number) => {
+          return (
+            <div className="headerCell" key={'table_header' + index}>
+              {title}
+            </div>
+          )
         })
       }
     </div>

@@ -9,14 +9,9 @@ const GroupingSelect = ({ id }: { id: string }) => {
     dispatch(SetTickerSize({ id: id, ticker: Number(size) }))
   }
 
-  const tickerOptions: any = {
-    list: UseTickers(id),
-    callback: setTicker
-  }
-
   return (
     <div>
-      Grouping: <Select {...tickerOptions} />
+      Grouping: <Select list={UseTickers(id)} callback={setTicker} />
     </div>
   )
 }

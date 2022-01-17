@@ -1,9 +1,12 @@
 /** TABLES */
 
 type Values = {
-  amount: number,
-  price: number,
-  total: number
+  depth?: number,
+  cells: {
+    amount: number,
+    price: number,
+    total: number
+  }
 }
 
 type Price = {
@@ -36,7 +39,7 @@ interface Orderbooks {
     products: string[],
     current: string,
     values?: any,
-    headers?: any,
+    headers?: { [name: string]: string },
     compiled?: any,
     ticker?: number,
     wsInstance?: any,
