@@ -1,15 +1,15 @@
-import TypedKeys from 'utils/typed-keys'
+import ArrayFromObject from 'utils/array-from-object'
 
-const Select = (options: any) => {
-
+const Select = ({ list, callback }: { list: any, callback: any }) => {
+  const listArray = ArrayFromObject(list)
   return (
-    < select onChange={(e: any) => options.callback(e.target.value)} data-testid="Select" >
+    <select onChange={(e: React.ChangeEvent<HTMLSelectElement>) => callback(e.target.value)} data-testid="Select" >
       {
-        TypedKeys(options.list).map((value: string | number | symbol, index: number) => {
-          return <option key={options + index}>{options.list[value]}</option>
+        listArray.map((value: number, index: number) => {
+          return <option key={'list' + index}>{value}</option>
         })
       }
-    </select >
+    </select>
   )
 }
 

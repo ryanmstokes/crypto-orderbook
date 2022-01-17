@@ -11,14 +11,9 @@ const ToggleProducts = ({ id }: { id: string }) => {
     dispatch(SetCurrentProduct(id))
   }
 
-  const toggleOptions: any = {
-    title: "toggle",
-    callback: toggle
-  }
-
   return (
     <div className="toggle">
-      <Button {...toggleOptions} />
+      <Button title="toggle" callback={toggle} />
     </div>
   )
 }

@@ -1,13 +1,9 @@
 import Button from 'components/inputs/button'
 
-const KillFeed = ({ id, callback }: any) => {
-  const ToggleWebSocketOptions: any = {
-    title: "Kill Feed",
-    callback: callback
-  }
+const KillFeed = ({ id, callback }: { id: string, callback: any }) => {
   return (
     <div className="toggle">
-      <Button {...ToggleWebSocketOptions} />
+      <Button callback={callback} title="Kill Feed" />
     </div>
   )
 }

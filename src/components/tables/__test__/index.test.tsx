@@ -18,7 +18,45 @@ import { Provider } from 'react-redux'
 const tablesProps = {
   title: "Order Book",
   current: "XBTC",
-  tables: [{ title: "Bids", sort: "ASC", values: [{ amount: 100, price: 100, total: 1000 }, { amount: 100, price: 100, total: 1000 }] }, { title: "Bids", sort: "ASC", values: [{ amount: 100, price: 100, total: 1000 }, { amount: 100, price: 100, total: 1000 }] }]
+  tables: [{
+    title: "Bids", sort: "ASC", values: [
+      {
+        percentage: 20,
+        cells: {
+          amount: 100,
+          price: 100,
+          total: 1000
+        }
+      },
+      {
+        percentage: 20,
+        cells: {
+          amount: 100,
+          price: 100,
+          total: 1000
+        }
+      }
+    ]
+  },
+  {
+    title: "Bids",
+    sort: "ASC",
+    values:
+      [
+        {
+          percentage: 20,
+          cells: {
+            amount: 100, price: 100, total: 1000
+          }
+        },
+        {
+          percentage: 20,
+          cells: {
+            amount: 100, price: 100, total: 1000
+          }
+        }
+      ]
+  }]
 } as any
 
 describe("Tables component", () => {

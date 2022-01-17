@@ -8,7 +8,7 @@ import Tables from 'components/tables'
 import ToggleProducts from 'components/inputs/toggle-products'
 import KillFeed from 'components/inputs/kill-feed'
 
-const OrderBook = ({ pair }: any) => {
+const OrderBook = ({ pair }: { pair: string }) => {
   const dispatch = useDispatch()
   const [wsConnection, setWsConnection] = useState(true)
 

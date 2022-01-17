@@ -5,13 +5,14 @@ import { UseTitle, InitApp } from 'store/features/config'
 import { UseLoaded } from 'store/features/tables'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import config from 'config'
 
 const App = () => {
 
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(InitApp())
+    dispatch(InitApp(config))
   }, [dispatch])
 
   const title: string = UseTitle()

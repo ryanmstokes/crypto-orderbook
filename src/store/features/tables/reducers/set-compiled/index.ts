@@ -7,19 +7,19 @@ const SetCompiledReducer = (state: Lists, action: {
 }) => {
 
   const current = action.payload.id
-  const asks = deepClone(TickeredList(action.payload.values.asks.values, "DESC", state.orderbooks![action.payload.id].ticker))
-  const bids = deepClone(TickeredList(action.payload.values.bids.values, "ASC", state.orderbooks![action.payload.id].ticker)) /**state.orderbooks![action.payload.id].ticker */
+  const asks = deepClone(TickeredList(action.payload.values.asks.values, action.payload.values.asks.sortBy, state.orderbooks![action.payload.id].ticker!))
+  const bids = deepClone(TickeredList(action.payload.values.bids.values, action.payload.values.bids.sortBy, state.orderbooks![action.payload.id].ticker!))
 
   state.orderbooks![current].compiled = {
     asks: {
       title: 'Asks',
-      sortBy: 'DESC',
+      sortBy: action.payload.values.asks.sortBy,
       values: asks
     },
     bids:
     {
       title: 'Bids',
-      sortBy: 'ASC',
+      sortBy: action.payload.values.bids.sortBy,
       values: bids
     }
   }
