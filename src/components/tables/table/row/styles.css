@@ -13,4 +13,13 @@
   width: 100%;
   border-bottom: 1px solid black;
   padding: 10px 0;
+  background-image:
+linear-gradient(
+  to right, 
+  white,
+  white 50%,
+  white 50%,
+  #d7f0a2 50%,
+  #fffdc2 50%
+);
 }

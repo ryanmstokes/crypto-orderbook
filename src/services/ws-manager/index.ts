@@ -4,20 +4,20 @@ import { SetTables, SetTickerSize, SetInc } from 'store/features/tables'
 import { SetWebSocket } from 'store/features/tables'
 import deepClone from 'utils/deep-clone'
 
-const setCompiledObject = (id: any, asks: any, bids: any) => {
+const setCompiledObject = (id: string, asks: number[][], bids: number[][]) => {
   return {
     id: id,
     values: {
       asks:
       {
         title: "asks",
-        sortBy: "DESC",
+        sortBy: "ASC",
         values: deepClone(asks)
       },
       bids:
       {
         title: "bids",
-        sortBy: "ASC",
+        sortBy: "DESC",
         values: deepClone(bids)
       }
     }
@@ -58,7 +58,7 @@ const WsManager = (
         if (json.feed === "book_ui_1_snapshot") {
           asks = deepClone(json.asks)
           bids = deepClone(json.bids)
-          dispatch(SetCompiled(setCompiledObject(id, bids, asks)))
+          dispatch(SetCompiled(setCompiledObject(id, asks, bids)))
         }
         if (json.feed === "book_ui_1") {
 
@@ -69,7 +69,7 @@ const WsManager = (
           asks = deepClone(ListManager(asks, json.asks))
           bids = deepClone(ListManager(bids, json.bids))
 
-          dispatch(SetCompiled(setCompiledObject(id, bids, asks)
+          dispatch(SetCompiled(setCompiledObject(id, asks, bids)
           ))
           if (counter === UIRefreshRate) {
             dispatch(SetTables({ current, id }))

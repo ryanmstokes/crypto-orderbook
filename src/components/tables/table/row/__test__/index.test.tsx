@@ -5,7 +5,7 @@ import Row from 'components/tables/table/row'
 describe("Row component", () => {
   const values = [1, 100, 200]
 
-  render(<Row values={values} />)
+  render(<Row cells={values} id={1} depth={2} direction={'reverse'} />)
   it('renders the row component', () => {
     screen.getByText(1)
     screen.getByText(100)

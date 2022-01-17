@@ -11,7 +11,35 @@ jest.mock("store/features/tables", () => ({
   UseTables: () => ({
     title: "Order Book",
     current: "XBTC",
-    tables: [{ title: "Bids", sort: "ASC", values: [{ amount: 100, price: 100, total: 1000 }, { amount: 100, price: 100, total: 1000 }] }, { title: "Bids", sort: "ASC", values: [{ amount: 100, price: 100, total: 1000 }, { amount: 100, price: 100, total: 1000 }] }]
+    tables: [
+      {
+        title: "Bids",
+        sort: "ASC",
+        values: [
+          {
+            percentage: 20,
+            cells: { amount: 100, price: 100, total: 1000 }
+          },
+          {
+            percentage: 20,
+            cells: { amount: 100, price: 100, total: 1000 }
+          }
+        ]
+      },
+      {
+        title: "Bids",
+        sort: "ASC",
+        values: [
+          {
+            percentage: 20,
+            cells: { amount: 100, price: 100, total: 1000 }
+          },
+          {
+            percentage: 20,
+            cells: { amount: 100, price: 100, total: 1000 }
+          }
+        ]
+      }]
   }),
   UseOrderbooks: () => { return { id: 'btc_eth', current: "XBTC" } },
   UseWSConfig: () => { return { url: "wss://www.cryptofacilities.com/ws/v1", feed: "book_ui_1", symbol: "PI_XBTUSD" } },
@@ -26,7 +54,7 @@ jest.mock("store/features/tables", () => ({
 describe("orderbook component", () => {
   const mockStore = configureStore()
   const store = mockStore({ config: config, lists: tables })
-  render(<Provider store={store}><Orderbook /></Provider>)
+  render(<Provider store={store}><Orderbook pair="btc-eth" /></Provider>)
   it('renders the orderbook component', () => {
     expect(screen.getByTestId('orderbook')).toBeTruthy()
     expect(screen.getByTestId('orderbook')).toHaveTextContent(tables.title)

@@ -1,6 +1,7 @@
-const Button = (options: any) => {
+
+const Button = ({ title, callback }: { title: string, callback: any }) => {
   return (
-    <button onClick={options.callback} >{options.title}</button>
+    <button onClick={callback} >{title}</button>
   )
 }
 

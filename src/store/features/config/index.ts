@@ -7,7 +7,7 @@ export const configSlice = createSlice({
   name: 'config',
   initialState: config,
   reducers: {
-    InitApp() { },
+    InitApp(state, action) { },
     LoadConfig: LoadConfigReducer,
   },
 })

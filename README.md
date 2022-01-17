@@ -1,6 +1,6 @@
 # Crypto Orderbook Application
 
-Crypto Oderbook is an application for showing live buy and sell orders of crypto currencies. 
+Crypto Orderbook is an application for showing live buy and sell orders of crypto currencies. 
 
 ## Introduction
 
