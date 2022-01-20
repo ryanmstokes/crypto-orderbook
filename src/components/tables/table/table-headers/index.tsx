@@ -1,19 +1,27 @@
-import 'components/tables/table/table-headers/styles.css'
+import { StyledHeaders, StyledHeaderCell } from 'components/tables/table/table-headers/styled'
+import { UseMobile } from 'store/features/config'
 
-const TableHeaders = ({ headers, direction }: { headers: string[], direction: string }) => {
-  let directedHeaders = direction === 'reverse' ? [...headers].reverse() : headers
+const TableHeaders = ({ headers, id }: { headers: string[], id: number }) => {
+  const direction = id === 0 ? 'reverse' : 'default'
+  let visible: boolean = true
+  const directedHeaders = direction === 'reverse' && !UseMobile()
+    ? [...headers].reverse()
+    : headers
+  if (id === 0 && UseMobile()) {
+    visible = false
+  }
   return (
-    <div className="headers" key="TableHeaders">
+    <StyledHeaders key="TableHeaders">
       {
-        directedHeaders.map((title: string, index: number) => {
+        visible ? directedHeaders.map((title: string, index: number) => {
           return (
-            <div className="headerCell" key={'table_header' + index}>
+            <StyledHeaderCell key={'table_header' + index}>
               {title}
-            </div>
+            </StyledHeaderCell>
           )
-        })
+        }) : null
       }
-    </div>
+    </StyledHeaders>
   )
 }
 

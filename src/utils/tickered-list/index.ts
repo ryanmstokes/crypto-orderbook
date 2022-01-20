@@ -5,7 +5,7 @@ const TickeredList = (clonedList: any, sort: string, tickerSize: number) => {
   let currentAmount = 0
   let currentPrice = 0
   let currentTickerRange: number = 0
-  /** check the number start on a ticker size if not round down or up */
+
   const sortedList = deepClone(clonedList.sort(function (x: number[], y: number[]) { return x[0] - y[0] }))
 
   for (var i = 0, n = sortedList.length; i < n; ++i) {

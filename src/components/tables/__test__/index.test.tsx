@@ -6,17 +6,8 @@ import config from 'store/features/config/initial-state'
 import tables from 'store/features/tables/initial-state'
 import { Provider } from 'react-redux'
 
-// jest.mock("store/features/tables", () => ({
-//   useTables: () => (
-//     {
-//       title: "Order Book",
-//       current: "XBTC",
-//       tables: tables
-//     })
-// }));
-
 const tablesProps = {
-  title: "Order Book",
+  title: "Orderbook",
   current: "XBTC",
   tables: [{
     title: "Bids", sort: "ASC", values: [
@@ -68,7 +59,8 @@ describe("Tables component", () => {
 
   it('renders the table component', () => {
 
-    screen.getByText(tables.title)
+    screen.queryAllByText('100')
+    screen.queryAllByText('1000')
   })
 })
 

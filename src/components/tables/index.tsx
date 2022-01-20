@@ -1,23 +1,25 @@
 import Table from 'components/tables/table'
-import 'components/tables/style.css'
+import { StyledTables, StyledTablesInner, StyledTableWrapper } from 'components/tables/styled'
+import { UseMobile } from 'store/features/config'
 
-const Tables = ({ title, current, tables }: { title: string, current: string, tables: any }) => {
+const Tables = ({ current, tables }: { title: string, current: string, tables: any }) => {
+  let ConstructedTables = []
+  for (var i = 0, n = tables.length; i < n; ++i) {
+    ConstructedTables.push(
+      <StyledTableWrapper data-testid={"Table_" + i} key={"Table_wrap" + i} >
+        <Table table={tables[i]} id={i} key={"Table" + i} />
+      </StyledTableWrapper>
+    )
+  }
+  if (UseMobile()) {
+    ConstructedTables = [...ConstructedTables].reverse()
+  }
   return (
-    <div className="tables">
-      <h2>{title}</h2>
-      <h3>{current}</h3>
-      <div className="tablesInner">
-        {
-          tables.map((table: any, index: number) => {
-            return (
-              <div data-testid={"Table_" + index} key={"Table_wrap" + index} >
-                <Table table={table} id={index} key={"Tablex" + index} />
-              </div>
-            )
-          })
-        }
-      </div>
-    </div>
+    <StyledTables >
+      <StyledTablesInner>
+        {ConstructedTables}
+      </StyledTablesInner>
+    </StyledTables>
   )
 }
 
