@@ -1,29 +1,25 @@
-import styled from 'styled-components'
+import { StyledDepthVisualiser, StyledG, StyledSVG } from 'components/tables/table/depth-visualiser/styled'
+import theme from 'theme'
+import { UseMobile } from 'store/features/config'
 
-const StyledDepthVisualiser = styled('div') <{ direction: string }>`
-position: absolute;
-top:0;
-left:0;
-width:auto;
-height:100%;
-display:flex;
-z-index: -1;
-justify-content: ${(props) => props.direction === 'reverse' ? 'right' : 'left'}
-`
-const StledG = styled('g')`
-fill: grey;
-`
-const DepthVisualiser = ({ percentage, direction }: { percentage: number, direction: string }) => {
+const DepthVisualiser = ({ percentage, direction, id }: { percentage: number, direction: string, id: number }) => {
+  const highlight = direction === 'reverse'
+    ? theme.colors.background.b
+    : theme.colors.background.c
   return (
-    <StyledDepthVisualiser direction={direction}>
-      <svg width={percentage + "%"} height="100%" aria-labelledby="title desc" role="img">
+    <StyledDepthVisualiser>
+      <StyledSVG direction={direction} aria-labelledby="title desc" role="img" mobile={UseMobile()}>
         <title id="title">Depth bar</title>
         <desc id="desc">Used to indicate perentage of value.</desc>
-        <StledG>
-          <rect width="100%" height="100%" ></rect>
-        </StledG>
-      </svg>
-    </StyledDepthVisualiser>
+        <StyledG style={
+          {
+            fill: highlight
+          }
+        }>
+          <rect width={percentage + '%'} height="100%" ></rect>
+        </StyledG>
+      </StyledSVG>
+    </StyledDepthVisualiser >
   )
 }
 

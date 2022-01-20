@@ -1,38 +1,37 @@
 import Cell from 'components/tables/table/cell'
-import 'components/tables/table/row/styles.css'
-import styled from 'styled-components'
 import DepthVisualiser from 'components/tables/table/depth-visualiser'
 import ArrayFromObject from 'utils/array-from-object'
+import { StyledRow, Inner } from 'components/tables/table/row/styled'
+import { UseMobile } from 'store/features/config'
 
-const RowComponent = styled.div`
-display: flex;
-position: relative;
-justify-content: center;
-flex-direction: row;
-display: flex; 
-display: -webkit-flex;          
-flex-direction: row;  
--webkit-flex-direction: row;   
-flex-grow: 0;  
--webkit-flex-grow: 0;          
-flex-wrap: wrap;
--webkit-flex-wrap: wrap;         
-width: 100%;
-border-bottom: 1px solid black;
-padding: 10px 0;
-`;
+const Row = ({ cells, id, index, depth, direction }: { cells: number[], id: number, index: number, depth: number, direction: string }) => {
 
-const Row = ({ cells, id, depth, direction }: { cells: number[], id: number, depth: number, direction: string }) => {
-  let directedCells = direction === 'reverse' ? ArrayFromObject(cells).reverse() : ArrayFromObject(cells)
+  const directedCells = direction === 'reverse' && !UseMobile()
+    ? ArrayFromObject(cells).reverse()
+    : ArrayFromObject(cells)
+
+  let ConstructedCells = []
+  for (var i = 0, n = directedCells.length; i < n; ++i) {
+    let color: string = 'white'
+    if (i === 2 && id === 0 && !UseMobile()) {
+      color = 'primary'
+    }
+    if (i === 0 && id === 0 && UseMobile()) {
+      color = 'primary'
+    }
+    if (i === 0 && id === 1) {
+      color = 'secondary'
+    }
+    ConstructedCells.push(<Cell value={directedCells[i]} key={'cell' + i} color={color} />)
+  }
+
   return (
-    <RowComponent key={"row_comp" + id}>
-      <DepthVisualiser percentage={depth} direction={direction} />
-      {
-        directedCells.map((item: number, index: number) =>
-          <Cell value={item} key={'cell' + index} />
-        )
-      }
-    </RowComponent>
+    <StyledRow key={"row_comp" + id + index}>
+      <DepthVisualiser percentage={depth} direction={direction} id={id} />
+      <Inner >
+        {ConstructedCells}
+      </Inner>
+    </StyledRow>
   )
 }
 

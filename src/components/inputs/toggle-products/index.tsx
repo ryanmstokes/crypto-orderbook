@@ -13,7 +13,7 @@ const ToggleProducts = ({ id }: { id: string }) => {
 
   return (
     <div className="toggle">
-      <Button title="toggle" callback={toggle} />
+      <Button title="Toggle feed" callback={toggle} variant="a" />
     </div>
   )
 }

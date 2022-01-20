@@ -1,11 +1,20 @@
 import { render, screen } from '@testing-library/react'
 import "@testing-library/jest-dom/extend-expect"
 import Row from 'components/tables/table/row'
+import { Provider } from 'react-redux'
+import configureStore from 'redux-mock-store'
+import config from 'store/features/tables/initial-state'
+import tables from 'store/features/tables/initial-state'
 
 describe("Row component", () => {
+  const mockStore = configureStore()
+  const store = mockStore({ config: config, lists: tables })
   const values = [1, 100, 200]
+  jest.mock("store/features/config", () => ({
+    UseMobile: () => false
+  }))
 
-  render(<Row cells={values} id={1} depth={2} direction={'reverse'} />)
+  render(<Provider store={store}><Row cells={values} id={1} index={0} depth={2} direction={'reverse'} /></Provider>)
   it('renders the row component', () => {
     screen.getByText(1)
     screen.getByText(100)

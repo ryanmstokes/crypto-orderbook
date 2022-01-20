@@ -20,10 +20,10 @@ export const UseTables = (id: string, currentSymbol: string) => {
       }
 
       let tableData: any = false
+      // title: state.lists.orderbooks![id].title,
 
       if (prices !== undefined) {
         tableData = {
-          title: state.lists.orderbooks![id].title,
           current: state.lists.orderbooks![id].current,
           tables: prices
         }

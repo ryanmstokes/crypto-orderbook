@@ -1,18 +1,26 @@
-import 'components/app/style.css'
 import PageMeta from 'components/app/meta-tags'
 import OrderBook from 'components/orderbook'
-import { UseTitle, InitApp } from 'store/features/config'
+import { UseTitle, InitApp, SetMobile } from 'store/features/config'
 import { UseLoaded } from 'store/features/tables'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import config from 'config'
+import { StyledApp, StyledAppContent } from 'components/app/styled'
 
 const App = () => {
 
   const dispatch = useDispatch()
+  dispatch(SetMobile(window.innerWidth <= 810))
 
   useEffect(() => {
     dispatch(InitApp(config))
+    const onResize = () => {
+      dispatch(SetMobile(window.innerWidth <= 810))
+    }
+    window.addEventListener("resize", onResize)
+    return () => {
+      window.removeEventListener("resize", onResize)
+    }
   }, [dispatch])
 
   const title: string = UseTitle()
@@ -20,19 +28,18 @@ const App = () => {
 
   return (
     <div>
-      <div className="App" data-testid="App" >
+      <StyledApp data-testid="App" >
         <PageMeta />
         {
           loaded ? (
-            <div>
+            <StyledAppContent >
               <h1>{title}</h1>
               <OrderBook pair="btc_eth" />
               {/* <OrderBook pair="eth_btc" /> */}
-            </div>
+            </StyledAppContent>
           ) : <div>Loading</div>
         }
-      </div >
-
+      </StyledApp >
     </div>
   )
 }

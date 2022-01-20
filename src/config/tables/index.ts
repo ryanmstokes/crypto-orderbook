@@ -13,7 +13,7 @@ const tables: Lists = {
   lists: {
     XBTC: {
       title: "XBTC",
-      inc: [0.5, 1, 2.5],
+      inc: [0.50, 1, 2.5],
       ticker: 0.5,
       product_ids: "PI_XBTUSD",
       prices: {

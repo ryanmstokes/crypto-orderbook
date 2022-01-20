@@ -1,7 +1,8 @@
+import { StyledButton } from 'components/inputs/button/styled'
 
-const Button = ({ title, callback }: { title: string, callback: any }) => {
+const Button = ({ title, callback, variant }: { title: string, callback: any, variant: any }) => {
   return (
-    <button onClick={callback} >{title}</button>
+    <StyledButton onClick={callback} variant={variant}>{title}</StyledButton>
   )
 }
 
