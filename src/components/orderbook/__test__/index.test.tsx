@@ -57,7 +57,7 @@ describe("orderbook component", () => {
   render(<Provider store={store}><Orderbook pair="btc-eth" /></Provider>)
   it('renders the orderbook component', () => {
     expect(screen.getByTestId('orderbook')).toBeTruthy()
-    expect(screen.getByTestId('orderbook')).toHaveTextContent(tables.title)
+    expect(screen.getByText('Orderbook')).toBeTruthy()
   })
 })
 

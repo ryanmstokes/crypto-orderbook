@@ -1,6 +1,6 @@
-import 'components/tables/table/cell/styles.css'
+import { StyledCell } from 'components/tables/table/cell/styled'
 
-const Cell = ({ value }: { value: number }) =>
-  <div data-testid="Cell" className="cell"> {value}</div >
+const Cell = ({ value, color }: { value: number, color: string }) =>
+  <StyledCell data-testid="Cell" color={color}>{value.toLocaleString()}</StyledCell >
 
 export default Cell

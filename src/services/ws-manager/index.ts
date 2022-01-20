@@ -54,7 +54,6 @@ const WsManager = (
     const json = JSON.parse(event.data)
     try {
       if ((json.event = "data")) {
-        /** Turn this into switch  statement */
         if (json.feed === "book_ui_1_snapshot") {
           asks = deepClone(json.asks)
           bids = deepClone(json.bids)

@@ -1,31 +1,39 @@
 import Row from 'components/tables/table/row'
 // import { Price, Values } from 'types'
 import TableHeaders from 'components/tables/table/table-headers'
-import 'components/tables/table/styles.css'
 import { UseTableHeaders } from 'store/features/tables'
+import { StyledTable } from 'components/tables/table/styled'
+import { UseMobile } from 'store/features/config'
 
-const Table = ({ table, id }: { table: any, id: number }/*Price*/) => {
-  let headers = UseTableHeaders()
+const Table = ({ table, id }: { table: any, id: number }) => {
+  const headers = UseTableHeaders()
+  let ConstructedRows = []
+
+  for (var i = 0, n = table.values.length; i < n; ++i) {
+    ConstructedRows.push(
+      <div key={"table_row_wrap" + i} data-testid={"table_row" + i}>
+        <Row
+          cells={table.values[i].cells}
+          key={"table_row" + i}
+          id={id}
+          index={i}
+          depth={table.values[i].depth}
+          direction={id === 0 ? 'reverse' : 'default'}
+        />
+      </div>
+    )
+  }
+  if (UseMobile()) {
+    if (id === 1) {
+      ConstructedRows = [...ConstructedRows].reverse()
+    }
+  }
   return (
-    <div key={"table" + id} className="table">
-      {table.title}
-      <TableHeaders headers={headers} direction={id === 0 ? 'reverse' : 'default'} />
-      {
-        table.values?.map((values: any, index: number) => {
-          return (
-            <div key={"table_row_wrap" + index} data-testid={"table_row" + index}>
-              <Row
-                cells={values.cells}
-                key={"table_row" + index}
-                id={id + index}
-                depth={values.depth}
-                direction={id === 0 ? 'reverse' : 'default'}
-              />
-            </div>
-          )
-        })
-      }
-    </div>
+    <StyledTable key={"table" + id} >
+      {/* {table.title} */}
+      <TableHeaders headers={headers} id={id} />
+      {ConstructedRows}
+    </StyledTable>
   )
 }
 

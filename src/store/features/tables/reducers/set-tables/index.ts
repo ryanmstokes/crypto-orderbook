@@ -12,7 +12,8 @@ const SetTablesReducer = (state: Lists, action: { payload: { current: string, id
   state.orderbooks![id].inc = state.lists[current].inc
 
   let orders: any = {}
-  TypedKeys(payloadLists).forEach((key: any) => {
+
+  TypedKeys(payloadLists).reverse().forEach((key: any) => {
 
     const tickeredList: any = payloadLists[key].values
 
@@ -32,7 +33,6 @@ const SetTablesReducer = (state: Lists, action: { payload: { current: string, id
 
     orders[key] = { title: key, sortBy: payloadLists[key].sortBy, values: decoratedObjectArray }
 
-    //** Set up table headers */
     let headerArray: { [name: string]: string } = {}
     Object.keys(state.lists[Object.keys(state.lists)[0]].prices[key].values![0].cells).forEach((key, index) => {
       headerArray["title" + index] = key

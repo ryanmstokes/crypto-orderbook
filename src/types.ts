@@ -90,9 +90,12 @@ interface Config {
       products: string[],
       current: string,
       values?: Values[],
-      headers?: { [name: string]: string }
+      headers?: {
+        [name: string]: string
+      }
     }
-  }
+  },
+  mobile?: boolean
 }
 
 interface ConfigPayload {
