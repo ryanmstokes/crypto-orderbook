@@ -24,16 +24,14 @@ Displays the volume of sell orders at different prices. This list is ordered by 
 
 The orderbook has several features:
 
-<p align="left">
-  <img src="./public/group.jpg" />
-</p>
+
 
 ### Group
 
 Allows user to control the grouping of price bands within the orderbook. Each currrency pair (e.g. ETH/USD) has a different array of group values.
 
 <p align="left">
-  <img src="./public/toggle.jpg" />
+  <img src="./public/group.jpg" />
 </p>
 
 ### Toggle Currrrency
@@ -41,7 +39,7 @@ Allows user to control the grouping of price bands within the orderbook. Each cu
 Allows user to toggle which currency is loaded into the orderbook.
 
 <p align="left">
-  <img src="./public/kill-feed.jpg" />
+  <img src="./public/toggle.jpg" />
 </p>
 
 ### Kill Feed
@@ -49,12 +47,16 @@ Allows user to toggle which currency is loaded into the orderbook.
 Closes the websocket connection and when clicked again will restart the websocket connnection with the currrent configuration. 
 
 <p align="left">
-  <img src="./public/depth-visualiser.jpg" />
+  <img src="./public/kill-feed.jpg" />
 </p>
 
 ### Depth Visualiser
 
 Gives the user a intuitive way to visualise buy and sell volumes ate different prices.
+
+<p align="left">
+  <img src="./public/depth-visualiser.jpg" />
+</p>
 
 ##  Getting started
 
