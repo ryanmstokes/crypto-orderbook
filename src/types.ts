@@ -28,7 +28,7 @@ type List = {
   inc: number[],
   ticker: number,
   product_ids: string,
-  prices: Prices
+  prices?: Prices
 }
 
 interface Orderbooks {

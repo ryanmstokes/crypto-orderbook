@@ -34,7 +34,7 @@ const SetTablesReducer = (state: Lists, action: { payload: { current: string, id
     orders[key] = { title: key, sortBy: payloadLists[key].sortBy, values: decoratedObjectArray }
 
     let headerArray: { [name: string]: string } = {}
-    Object.keys(state.lists[Object.keys(state.lists)[0]].prices[key].values![0].cells).forEach((key, index) => {
+    Object.keys(state.lists[Object.keys(state.lists)[0]].prices![key].values![0].cells).forEach((key, index) => {
       headerArray["title" + index] = key
     })
     state.headers = headerArray
