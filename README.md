@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./crypto-orderbook.jpg" />
+  <img src="./public/crypto-orderbook.jpg" />
 </p>
 
 # Crypto Orderbook Application
@@ -24,24 +24,24 @@ Displays the volume of sell orders at different prices. This list is ordered by 
 
 The orderbook has several features:
 
-<p align="center">
-  <img src="./group.jpg" />
+<p align="left">
+  <img src="./public/group.jpg" />
 </p>
 
 ### Group
 
 Allows user to control the grouping of price bands within the orderbook. Each currrency pair (e.g. ETH/USD) has a different array of group values.
 
-<p align="center">
-  <img src="./toggle.jpg" />
+<p align="left">
+  <img src="./public/toggle.jpg" />
 </p>
 
 ### Toggle Currrrency
 
 Allows user to toggle which currency is loaded into the orderbook.
 
-<p align="center">
-  <img src="./kill-feed.jpg" />
+<p align="left">
+  <img src="./public/kill-feed.jpg" />
 </p>
 
 ### Kill Feed
