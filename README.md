@@ -58,7 +58,7 @@ Closes the websocket connection and when clicked again will restart the websocke
 
 ### Depth Visualiser
 
-Gives the user a intuitive way to visualise buy and sell volumes ate different prices.
+Gives the user an intuitive way to visualise buy and sell volumes at different prices. The bars width is the rows total volume as a percentage of total book volume.
 
 <p align="left">
   <img src="./public/depth-visualiser.jpg" />
