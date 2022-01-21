@@ -16,9 +16,17 @@ The orderbook consists of 2 different tables:
 
 Displays the volume of buy orders at different prices. This list is ordered by price DESC.
 
+<p align="left">
+  <img src="./public/buys.jpg" />
+</p>
+
 ### Sell table
 
 Displays the volume of sell orders at different prices. This list is ordered by price ASC.
+
+<p align="left">
+  <img src="./public/sells.jpg" />
+</p>
 
 ## Orderbook features
 
