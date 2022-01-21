@@ -48,6 +48,14 @@ Allows user to toggle which currency is loaded into the orderbook.
 
 Closes the websocket connection and when clicked again will restart the websocket connnection with the currrent configuration. 
 
+<p align="left">
+  <img src="./public/depth-visualiser.jpg" />
+</p>
+
+### Depth Visualiser
+
+Gives the user a intuitive way to visualise buy and sell volumes ate different prices.
+
 ##  Getting started
 
 Clone the application
