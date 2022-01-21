@@ -10,7 +10,7 @@ describe("Table component", () => {
   const mockStore = configureStore()
   const store = mockStore({ config: config, lists: tables })
   const list = tables.lists[Object.keys(tables.lists)[1]]
-  const prices = list.prices.bids
+  const prices = list.prices!.bids
   const TableConfig = {
     table: prices,
     id: 1

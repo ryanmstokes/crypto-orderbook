@@ -96,7 +96,7 @@ The page will reload if you make edits. You will also see any lint errors in the
 
 ## Configuring orderbooks
 
-The application uses a novel configuration system and set of files (found in /config) to define currencies and generate currency pair configurations for orderbooks. The application takes the configuration files and loads them into the applications store (Redux), while a custom orderbook component, set of actions, websocket manager and set of atomically designed components is used to generate the orderbooks and its features.
+The application uses a novel configuration system and set of files (/config) to define currencies and generate currency pair configurations for orderbooks. The application takes the configuration files and loads them into the applications store (Redux), while a custom orderbook component, set of actions, websocket manager and set of atomically designed components is used to generate the orderbooks and its features.
 
 ## Defining currencies
 
@@ -132,11 +132,6 @@ In order to generate an orderbook we must define an orderbook currency pair with
       title: 'Orderbook 1',
       products: ['XBTC', 'ETH'],
       current: 'XBTC'
-    }, orderbooks: {
-    btc_eth: {
-      title: 'Orderbook 1',
-      products: ['XBTC', 'ETH'],
-      current: 'XBTC'
     },
     ...
  }
@@ -152,7 +147,7 @@ Create the orderbook by importing the orderbook component and passing it the nam
 
 ## Technology
 
-The application has been developed using a functional programminng style, utilising the latest SPA technologies.
+The application has been developed using a functional programming style, utilising the latest SPA technologies.
 
 ### Typescript
 
@@ -166,11 +161,9 @@ Latest version of React using React hooks and a purely functional approach.
 
 ### Redux
 
-Latest version of Redux using Redux toolki and Redux Saga in tandem with react hooks.
+Latest version of Redux using Redux toolkit and Redux Saga in tandem with react hooks.
 
-### React Testing Library
-
-70% unit test coverage using React testing library, Jest, and mock-store library.
+https://redux-toolkit.js.org/
 
 ### Web Sockets
 
@@ -178,11 +171,16 @@ Live market data is taken from a websocket connection from a major crypto exchan
 
 ### Styled Components and Theme
 
-Styled componts library is used to style all components and all elements of orrdeerbook are configurable via a global theme file found in **/theme**.
+The Styled components library is used to style all components and all elements of orderbook are configurable via a global theme file found in **/theme**.
+
+https://styled-components.com/docs
 
 ## Testing
+70% unit test coverage using React testing library, Jest, and mock-store library.
 
-Unit tests are written with React Testing Library for key components and funtions within the application. Test files are located in directories alongside their corresponding units.
+Unit tests are written with React Testing Library for key components and functions within the application. Test files are located in directories alongside their corresponding components/functions.
+
+https://github.com/testing-library/react-testing-library
 
 To run tests:
 
