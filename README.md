@@ -4,7 +4,7 @@
 
 # Crypto Orderbook Application
 
-Crypto Orderbook is an open source scalable dynamic orderbook system for generating oderbooks that show the volume of buy and sell orders at different $ prices for pairs of currencies. Orderbooks are generated from live crypto stock exchange web socket data messages.
+Crypto Orderbook is an open source scalable dynamic orderbook system for generating orderbooks that show the volume of buy and sell orders at different $ prices for pairs of currencies. Orderbooks are generated from live crypto stock exchange web socket data messages.
 
 View an example of the application here:
 
