@@ -1,6 +1,14 @@
+<p align="center">
+  <img src="./public/crypto-orderbook.jpg" />
+</p>
+
 # Crypto Orderbook Application
 
 Crypto Orderbook is an open source scalable dynamic orderbook system for generating oderbooks that show the volume of buy and sell orders at different $ prices for pairs of currencies. Orderbooks are generated from live crypto stock exchange web socket data messages.
+
+View an example of the application here:
+
+https://crypto-orderbook.netlify.app/
 
 ## What is an orderbook
 
@@ -12,9 +20,17 @@ The orderbook consists of 2 different tables:
 
 Displays the volume of buy orders at different prices. This list is ordered by price DESC.
 
+<p align="left">
+  <img src="./public/buys.jpg" />
+</p>
+
 ### Sell table
 
 Displays the volume of sell orders at different prices. This list is ordered by price ASC.
+
+<p align="left">
+  <img src="./public/sells.jpg" />
+</p>
 
 ## Orderbook features
 
@@ -24,13 +40,33 @@ The orderbook has several features:
 
 Allows user to control the grouping of price bands within the orderbook. Each currrency pair (e.g. ETH/USD) has a different array of group values.
 
+<p align="left">
+  <img src="./public/group.jpg" />
+</p>
+
 ### Toggle Currrrency
 
 Allows user to toggle which currency is loaded into the orderbook.
 
+<p align="left">
+  <img src="./public/toggle.jpg" />
+</p>
+
 ### Kill Feed
 
 Closes the websocket connection and when clicked again will restart the websocket connnection with the currrent configuration. 
+
+<p align="left">
+  <img src="./public/kill-feed.jpg" />
+</p>
+
+### Depth Visualiser
+
+Gives the user an intuitive way to visualise buy and sell volumes at different prices. The bars width is the rows total volume as a percentage of total book volume.
+
+<p align="left">
+  <img src="./public/depth-visualiser.jpg" />
+</p>
 
 ##  Getting started
 
@@ -58,7 +94,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits. You will also see any lint errors in the console.
 
-## Configuring orderbooks
+## Configuring orderbooks
 
 The application uses a novel configuration system and set of files (found in /config) to define currencies and generate currency pair configurations for orderbooks. The application takes the configuration files and loads them into the applications store (Redux), while a custom orderbook component, set of actions, websocket manager and set of atomically designed components is used to generate the orderbooks and its features.
 
@@ -106,7 +142,7 @@ In order to generate an orderbook we must define an orderbook currency pair with
  }
 ```
 
-## Generating Orderbooks within the application
+## Generating Orderbooks
 
 Create the orderbook by importing the orderbook component and passing it the name of the currency pair you wish to load:
 
