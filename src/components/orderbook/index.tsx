@@ -39,7 +39,8 @@ const OrderBook = ({ pair }: { pair: string }) => {
           <StyledOrderbookContent>
             <OrderbookHeader
               title="Orderbook"
-              id={id} />
+              id={id}
+              symbol={symbol} />
             <Tables {...tableData} />
             <OrderbookFooter
               id={id}

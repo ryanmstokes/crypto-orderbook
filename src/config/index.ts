@@ -9,12 +9,12 @@ const config: Config = {
   orderbooks: {
     btc_eth: {
       title: 'Orderbook 1',
-      products: ['XBTC', 'ETH'],
-      current: 'XBTC'
+      products: ['BTC', 'ETH'],
+      current: 'BTC'
     },
     eth_btc: {
       title: 'Orderbook 1',
-      products: ['ETH', 'XBTC'],
+      products: ['ETH', 'BTC'],
       current: 'ETH',
     }
   }

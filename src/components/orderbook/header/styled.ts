@@ -22,4 +22,19 @@ const StyledTitle = styled('h4')`
   color: ${theme.colors.text.a}
 `
 
-export { StyledOrderbookHeader, StyledGrouping, StyledTitle }
+const StyledLeft = styled('div')`
+  display: flex;
+  align-items: center;
+`
+const StyledSymbolPair = styled('h5')`
+  font-size: ${theme.fonts.sizes.sm};
+  margin: 0 0 0 0.3rem;
+  font-weight: 200;
+`
+export {
+  StyledOrderbookHeader,
+  StyledGrouping,
+  StyledTitle,
+  StyledLeft,
+  StyledSymbolPair
+}
