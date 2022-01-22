@@ -11,8 +11,8 @@ const tables: Lists = {
   url: "wss://www.cryptofacilities.com/ws/v1",
   feed: "book_ui_1",
   lists: {
-    XBTC: {
-      title: "XBTC",
+    BTC: {
+      title: "BTC",
       inc: [0.50, 1, 2.5],
       ticker: 0.5,
       product_ids: "PI_XBTUSD"
