@@ -1,6 +1,6 @@
-import { Lists } from 'types'
+import { Lists, ConfigOrderbooks } from 'types'
 
-const SetOrderBooksReducer = (state: Lists, action: { payload: any }) => {
+const SetOrderBooksReducer = (state: Lists, action: { payload: ConfigOrderbooks }) => {
   state.orderbooks = action.payload
 }
 

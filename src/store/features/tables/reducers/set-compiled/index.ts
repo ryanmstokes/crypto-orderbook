@@ -3,7 +3,7 @@ import deepClone from 'utils/deep-clone'
 import TickeredList from 'utils/tickered-list'
 
 const SetCompiledReducer = (state: Lists, action: {
-  payload: any
+  payload: { values: { asks: { values: number[][], sortBy: string }, bids: { values: number[][], sortBy: string } }, id: string }
 }) => {
 
   const current = action.payload.id
