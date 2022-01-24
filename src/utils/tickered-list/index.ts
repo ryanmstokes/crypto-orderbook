@@ -1,6 +1,6 @@
 import deepClone from 'utils/deep-clone'
 
-const TickeredList = (clonedList: any, sort: string, tickerSize: number) => {
+const TickeredList = (clonedList: number[][], sort: string, tickerSize: number) => {
   let tickeredList: any = []
   let currentAmount = 0
   let currentPrice = 0

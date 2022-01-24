@@ -8,7 +8,7 @@ export const UseLoaded = () => {
   })
 }
 
-export const UseTables = (id: string, currentSymbol: string) => {
+export const UseTables = (id: string) => {
   return useSelector((state: RootState) => {
     if (state.lists.orderbooks![id].current !== 'undefined') {
       let prices: any
@@ -46,7 +46,7 @@ export const UseTableHeaders = () => {
 
 export const UseTickers = (id: string): number[] => {
   return useSelector((state: RootState): number[] => {
-    return state.lists.orderbooks![id].inc
+    return state.lists.orderbooks![id].inc!
   })
 }
 
