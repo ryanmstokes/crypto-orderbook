@@ -23,13 +23,14 @@ const setCompiledObject = (id: string, asks: number[][], bids: number[][]) => {
     }
   }
 }
+
 const WsManager = (
   id: string,
   current: string,
   url: string,
   feed: string,
   product_ids: string,
-  dispatch: any
+  dispatch: { (action: any): void }
 ) => {
 
   dispatch(SetInc({ id: id, current: current }))
@@ -40,7 +41,7 @@ const WsManager = (
   let counter = 0
   let UIRefreshRate = 30
 
-  const ws = new WebSocket(url)
+  const ws: WebSocket = new WebSocket(url)
 
   const wsMessage: { [name: string]: string | string[] } = { "event": "subscribe", "feed": feed, "product_ids": [product_ids] }
 

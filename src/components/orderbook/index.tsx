@@ -15,7 +15,7 @@ const OrderBook = ({ pair }: { pair: string }) => {
   const { id, current } = UseOrderbooks(pair)
 
   let { url, feed, symbol } = UseWSConfig(current)
-  let tableData = UseTables(id, current)
+  let tableData = UseTables(id)
 
   useEffect(() => {
     if (wsConnection) {

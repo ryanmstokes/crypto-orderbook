@@ -1,4 +1,6 @@
-const theme: any = {
+import { Theme } from 'types'
+
+const theme: Theme = {
   colors: {
     a: 'rgb(87,65,217)',
     b: 'rgb(185,29,29)',

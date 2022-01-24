@@ -35,7 +35,7 @@ interface Orderbooks {
   [name: string]:
   {
     title: string,
-    inc: number[],
+    inc?: number[],
     products: string[],
     current: string,
     values?: any,
@@ -43,6 +43,18 @@ interface Orderbooks {
     compiled?: any,
     ticker?: number,
     wsInstance?: any,
+  }
+}
+
+interface ConfigOrderbooks {
+  [name: string]: {
+    title: string,
+    products: string[],
+    current: string,
+    values?: Values[],
+    headers?: {
+      [name: string]: string
+    }
   }
 }
 
@@ -102,6 +114,48 @@ interface ConfigPayload {
   payload: Config
 }
 
+
+interface blah {
+  [name: string]: string
+}
+
+interface Theme {
+  colors: {
+    a: string,
+    b: string,
+    background: {
+      a: string,
+      b: string,
+      c: string,
+      d: string
+    },
+    text: {
+      a: string,
+      b: string,
+      c: string,
+      d: string
+    },
+    [name: string]: string | {
+      [name: string]: string
+    }
+  },
+  fonts: {
+    sizes: {
+      xs: string,
+      sm: string,
+      lg: string,
+      xl: string
+    }
+  },
+  [name: string]: string | {
+    [name: string]: string |
+    {
+      [name: string]: string
+    }
+  }
+}
+
+
 export type {
   Config,
   ConfigPayload,
@@ -113,5 +167,7 @@ export type {
   Prices,
   PricesPayload,
   Price,
-  Values
+  Values,
+  ConfigOrderbooks,
+  Theme
 }
