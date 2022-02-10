@@ -15,4 +15,3 @@ select{
 `
 
 export { StyledGroupOptions }
-

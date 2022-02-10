@@ -3,46 +3,63 @@ import TypedKeys from 'utils/typed-keys'
 import deepClone from 'utils/deep-clone'
 
 const SetTablesReducer = (state: Lists, action: { payload: { current: string, id: string } }) => {
+  const { current } = action.payload
+  const { id } = action.payload
 
-  const current = action.payload.current
-  const id = action.payload.id
+  interface PayloadLists {
+    [name: string]: { [name: string]: string | number }
+  }
 
-  const payloadLists = deepClone(state.orderbooks![id].compiled)
+  const payloadLists: PayloadLists = deepClone(state.orderbooks![id].compiled)
   state.orderbooks![id].headers = state.headers
   state.orderbooks![id].inc = state.lists[current].inc
 
-  let orders: any = {}
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const orders: any = {}
 
-  TypedKeys(payloadLists).reverse().forEach((key: any) => {
-
+  const typedList = TypedKeys(payloadLists)
+  typedList.reverse().forEach((key: string | number) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const tickeredList: any = payloadLists[key].values
 
     let cumulativeTotal = 0
-    let decoratedObjectArray: Values[] = []
+    const decoratedObjectArray: Values[] = []
     let percentage: number
 
     tickeredList.forEach((item: number[]) => {
       cumulativeTotal += item[1]
-      decoratedObjectArray.push({ cells: { price: item[0], amount: item[1], total: cumulativeTotal } })
+      decoratedObjectArray.push(
+        {
+          cells: {
+            price: item[0],
+            amount: item[1],
+            total: cumulativeTotal
+          }
+        }
+      )
     })
 
-    decoratedObjectArray.forEach((item: any, index: number) => {
-      percentage = item.cells.total / (decoratedObjectArray[tickeredList.length - 1].cells.total / 100)
+    decoratedObjectArray.forEach((item: Values, index: number) => {
+      percentage = item.cells.total
+        / (decoratedObjectArray[tickeredList.length - 1].cells.total
+          / 100
+        )
       decoratedObjectArray[index].depth = percentage
     })
 
     orders[key] = { title: key, sortBy: payloadLists[key].sortBy, values: decoratedObjectArray }
-
-    let headerArray: { [name: string]: string } = {}
-    Object.keys(state.lists[Object.keys(state.lists)[0]].prices![key].values![0].cells).forEach((key, index) => {
-      headerArray["title" + index] = key
-    })
+    // eslint-disable-next-line no-console
+    console.log('orders')
+    const headerArray: { [name: string]: string } = {}
+    Object.keys(state.lists[Object.keys(state.lists)[0]].prices![key].values![0].cells).forEach(
+      (cell, index) => {
+        headerArray[`title${index}`] = cell
+      }
+    )
     state.headers = headerArray
-
   })
 
   state.orderbooks![id] = { ...state.orderbooks![id], values: orders }
-
 }
 
 export default SetTablesReducer

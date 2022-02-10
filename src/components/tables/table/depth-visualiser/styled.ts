@@ -17,7 +17,7 @@ const StyledSVG = styled('svg') <{ direction: string, mobile: boolean }>`
 width: 100%;
 height: 100%;
 display:flex;
-transform: ${(props) => props.direction === 'reverse' && !props.mobile ? 'scaleX(-1)' : null};
+transform: ${(props) => (props.direction === 'reverse' && !props.mobile ? 'scaleX(-1)' : null)};
 `
 
 export { StyledDepthVisualiser, StyledG, StyledSVG }

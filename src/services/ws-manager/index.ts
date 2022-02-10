@@ -1,84 +1,84 @@
-import { SetCompiled } from 'store/features/tables'
+import {
+  SetCompiled, SetTables, SetTickerSize, SetInc, SetWebSocket,
+} from 'store/features/tables'
 import ListManager from 'utils/tables/list-manager'
-import { SetTables, SetTickerSize, SetInc } from 'store/features/tables'
-import { SetWebSocket } from 'store/features/tables'
 import deepClone from 'utils/deep-clone'
 
-const setCompiledObject = (id: string, asks: number[][], bids: number[][]) => {
-  return {
-    id: id,
-    values: {
-      asks:
-      {
-        title: "asks",
-        sortBy: "ASC",
-        values: deepClone(asks)
-      },
-      bids:
-      {
-        title: "bids",
-        sortBy: "DESC",
-        values: deepClone(bids)
-      }
-    }
-  }
-}
+const setCompiledObject = (id: string, asks: number[][], bids: number[][]) => ({
+  id,
+  values: {
+    asks:
+    {
+      title: 'asks',
+      sortBy: 'ASC',
+      values: deepClone(asks),
+    },
+    bids:
+    {
+      title: 'bids',
+      sortBy: 'DESC',
+      values: deepClone(bids),
+    },
+  },
+})
 
 const WsManager = (
   id: string,
   current: string,
   url: string,
   feed: string,
-  product_ids: string,
-  dispatch: { (action: any): void }
+  productIDs: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  dispatch: any
 ) => {
-
-  dispatch(SetInc({ id: id, current: current }))
-  dispatch(SetTickerSize({ id: id, ticker: 0 }))
+  dispatch(SetInc({ id, current }))
+  dispatch(SetTickerSize({ id, ticker: 0 }))
 
   let asks: number[][] = []
   let bids: number[][] = []
   let counter = 0
-  let UIRefreshRate = 30
+  const UIRefreshRate = 30
 
   const ws: WebSocket = new WebSocket(url)
 
-  const wsMessage: { [name: string]: string | string[] } = { "event": "subscribe", "feed": feed, "product_ids": [product_ids] }
+  const wsMessage: { [name: string]: string | string[] } = { event: 'subscribe', feed, product_ids: [productIDs] }
 
-  ws.onopen = (event) => {
+  ws.onopen = () => {
     ws.send(JSON.stringify(wsMessage))
     dispatch(SetWebSocket({ id, ws }))
   }
 
   ws.onmessage = (event) => {
-
     const json = JSON.parse(event.data)
     try {
-      if ((json.event = "data")) {
-        if (json.feed === "book_ui_1_snapshot") {
-          asks = deepClone(json.asks)
-          bids = deepClone(json.bids)
-          dispatch(SetCompiled(setCompiledObject(id, asks, bids)))
+      // eslint-disable-next-line no-console
+      // if ((json.event === 'data')) {
+      if (json.feed === 'book_ui_1_snapshot') {
+        // eslint-disable-next-line no-console
+        console.log('snapshot')
+        asks = deepClone(json.asks)
+        bids = deepClone(json.bids)
+        dispatch(SetCompiled(setCompiledObject(id, asks, bids)))
+      }
+      if (json.feed === 'book_ui_1') {
+        // eslint-disable-next-line no-console
+        console.log('update')
+        if (counter <= UIRefreshRate) {
+          counter += 1
         }
-        if (json.feed === "book_ui_1") {
 
-          if (counter <= UIRefreshRate) {
-            counter += 1
-          }
+        asks = deepClone(ListManager(asks, json.asks))
+        bids = deepClone(ListManager(bids, json.bids))
 
-          asks = deepClone(ListManager(asks, json.asks))
-          bids = deepClone(ListManager(bids, json.bids))
-
-          dispatch(SetCompiled(setCompiledObject(id, asks, bids)
-          ))
-          if (counter === UIRefreshRate) {
-            dispatch(SetTables({ current, id }))
-            counter = 0
-          }
+        dispatch(SetCompiled(setCompiledObject(id, asks, bids)))
+        if (counter === UIRefreshRate) {
+          dispatch(SetTables({ current, id }))
+          counter = 0
         }
       }
+      // }
     } catch (err) {
-      console.log(err)
+      // console.log(err)
     }
   }
 
@@ -86,6 +86,5 @@ const WsManager = (
     /** handle closed sockets */
   }
 }
-
 
 export default WsManager
