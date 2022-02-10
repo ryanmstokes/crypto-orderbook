@@ -2,6 +2,8 @@
   <img src="./public/crypto-orderbook.jpg" />
 </p>
 
+**Info: Development of this project is ongoing.**
+
 # Crypto Orderbook Application
 
 Crypto Orderbook is an open source scalable dynamic orderbook system for generating orderbooks that show the volume of buy and sell orders at different $ prices for pairs of currencies. Orderbooks are generated from live crypto stock exchange web socket data messages.
@@ -205,3 +207,45 @@ npm run build
 Builds the app for production to the /build` folder.
 
 It correctly bundles React in production mode and optimizes the build for the best performance.
+
+## Commit Message Format
+
+```
+type(scope?): subject
+```
+
+ type can be the following string:
+- build
+- chore
+- ci
+- docs
+- feat
+- fix
+- perf
+- refactor
+- revert
+- style
+- test
+
+real world examples:
+
+```
+fix(server): send cors headers
+feat(blog): add comment section
+chore: run tests on github workflow
+```
+
+make sure you have activated the husky  hooks  with:
+
+```
+npx husky install
+```
+
+and add the hook with:
+
+```
+npx husky add .husky/commit-msg 'npx --no -- commitlint --edit "$1"'
+```
+
+
+
