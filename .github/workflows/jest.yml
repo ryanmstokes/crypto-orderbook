@@ -1,0 +1,23 @@
+name: Unit Tests
+
+on:
+  push:
+    branches:
+jobs:
+  jest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.16.0]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+      - name: Run unit tests 
+        run: CI=true npm run test
+      

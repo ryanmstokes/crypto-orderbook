@@ -10,14 +10,14 @@ const config: Config = {
     btc_eth: {
       title: 'Orderbook 1',
       products: ['BTC', 'ETH'],
-      current: 'BTC'
+      current: 'BTC',
     },
     eth_btc: {
       title: 'Orderbook 1',
       products: ['ETH', 'BTC'],
       current: 'ETH',
-    }
-  }
+    },
+  },
 }
 
 export default config

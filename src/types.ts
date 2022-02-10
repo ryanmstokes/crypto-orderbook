@@ -1,12 +1,14 @@
 /** TABLES */
 
+type Cells = {
+  amount: number,
+  price: number,
+  total: number
+}
+
 type Values = {
   depth?: number,
-  cells: {
-    amount: number,
-    price: number,
-    total: number
-  }
+  cells: Cells
 }
 
 type Price = {
@@ -38,10 +40,12 @@ interface Orderbooks {
     inc?: number[],
     products: string[],
     current: string,
-    values?: any,
+    values?: Values[],
     headers?: { [name: string]: string },
-    compiled?: any,
+    compiled?: { asks: Price, bids: Price },
     ticker?: number,
+    // What is this type? WsInstance typeof WebSocket?
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     wsInstance?: any,
   }
 }
@@ -114,11 +118,6 @@ interface ConfigPayload {
   payload: Config
 }
 
-
-interface blah {
-  [name: string]: string
-}
-
 interface Theme {
   colors: {
     a: string,
@@ -155,7 +154,6 @@ interface Theme {
   }
 }
 
-
 export type {
   Config,
   ConfigPayload,
@@ -168,6 +166,7 @@ export type {
   PricesPayload,
   Price,
   Values,
+  Cells,
   ConfigOrderbooks,
-  Theme
+  Theme,
 }

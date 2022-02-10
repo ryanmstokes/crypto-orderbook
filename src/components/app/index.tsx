@@ -7,8 +7,7 @@ import { useDispatch } from 'react-redux'
 import config from 'config'
 import { StyledApp, StyledAppContent } from 'components/app/styled'
 
-const App = () => {
-
+function App() {
   const dispatch = useDispatch()
   dispatch(SetMobile(window.innerWidth <= 810))
 
@@ -17,9 +16,9 @@ const App = () => {
     const onResize = () => {
       dispatch(SetMobile(window.innerWidth <= 810))
     }
-    window.addEventListener("resize", onResize)
+    window.addEventListener('resize', onResize)
     return () => {
-      window.removeEventListener("resize", onResize)
+      window.removeEventListener('resize', onResize)
     }
   }, [dispatch])
 
@@ -28,18 +27,18 @@ const App = () => {
 
   return (
     <div>
-      <StyledApp data-testid="App" >
+      <StyledApp data-testid="App">
         <PageMeta />
         {
           loaded ? (
-            <StyledAppContent >
+            <StyledAppContent>
               <h1>{title}</h1>
               <OrderBook pair="btc_eth" />
               {/* <OrderBook pair="eth_btc" /> */}
             </StyledAppContent>
           ) : <div>Loading</div>
         }
-      </StyledApp >
+      </StyledApp>
     </div>
   )
 }

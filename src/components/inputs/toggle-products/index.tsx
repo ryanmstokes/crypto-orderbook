@@ -1,9 +1,8 @@
 import { useDispatch } from 'react-redux'
-import { CloseWebSocket } from 'store/features/tables'
-import { SetCurrentProduct } from 'store/features/tables'
+import { CloseWebSocket, SetCurrentProduct } from 'store/features/tables'
 import Button from 'components/inputs/button'
 
-const ToggleProducts = ({ id }: { id: string }) => {
+function ToggleProducts({ id }: { id: string }) {
   const dispatch = useDispatch()
 
   const toggle = () => {
