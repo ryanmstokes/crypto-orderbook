@@ -14,7 +14,7 @@ const StyledCell = styled('div') <{ color: string }>`
   padding: 0.3rem 0 0.3rem 3.5rem;
   z-index: 2;
   color: ${(props) => {
-    let color: string = 'white'
+    let color = 'white'
     if (props.color === 'primary') {
       color = theme.colors.text.b
     }
@@ -24,6 +24,5 @@ const StyledCell = styled('div') <{ color: string }>`
     return color
   }}
 `
-
 
 export { StyledCell }

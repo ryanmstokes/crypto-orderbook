@@ -5,4 +5,3 @@ const SetTableHeadersReducer = (state: Lists, action: { payload: { [name: string
 }
 
 export default SetTableHeadersReducer
-

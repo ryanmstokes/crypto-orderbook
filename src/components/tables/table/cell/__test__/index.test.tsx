@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
-import "@testing-library/jest-dom/extend-expect"
+import '@testing-library/jest-dom/extend-expect'
 import Cell from 'components/tables/table/cell'
 
-describe("Cell component", () => {
+describe('Cell component', () => {
   render(<Cell value={8} color="black" />)
   it('renders the cell component', () => {
     expect(screen.getByTestId('Cell')).toBeTruthy()

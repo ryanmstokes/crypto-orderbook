@@ -1,17 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
-import { watcherSaga } from 'store/features/config/saga/'
+import watcherSaga from 'store/features/config/saga/'
 
 import configReducer from 'store/features/config'
-import tablesSlice from 'store/features/tables'
+import tablesReducer from 'store/features/tables'
 
 const sagaMiddleWare = createSagaMiddleware()
 export const store = configureStore({
   reducer: {
     config: configReducer,
-    lists: tablesSlice
+    lists: tablesReducer,
   },
-  middleware: [sagaMiddleWare]
+  middleware: [sagaMiddleWare],
 })
 sagaMiddleWare.run(watcherSaga)
 // Infer the `RootState` and `AppDispatch` types from the store itself

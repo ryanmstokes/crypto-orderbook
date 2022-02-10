@@ -36,5 +36,5 @@ export {
   StyledGrouping,
   StyledTitle,
   StyledLeft,
-  StyledSymbolPair
+  StyledSymbolPair,
 }

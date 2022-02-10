@@ -8,9 +8,11 @@ export const configSlice = createSlice({
   name: 'config',
   initialState: config,
   reducers: {
+    // eslint-disable-next-line max-len
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
     InitApp(state, action) { },
     LoadConfig: LoadConfigReducer,
-    SetMobile: SetMobileReducer
+    SetMobile: SetMobileReducer,
   },
 })
 

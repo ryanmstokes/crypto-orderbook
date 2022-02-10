@@ -1,18 +1,18 @@
 import deepClone from 'utils/deep-clone'
 
 const TickeredList = (clonedList: number[][], sort: string, tickerSize: number) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let tickeredList: any = []
   let currentAmount = 0
   let currentPrice = 0
-  let currentTickerRange: number = 0
+  let currentTickerRange = 0
 
-  const sortedList = deepClone(clonedList.sort(function (x: number[], y: number[]) { return x[0] - y[0] }))
+  const sortedList = deepClone(clonedList.sort((x: number[], y: number[]) => x[0] - y[0]))
 
-  for (var i = 0, n = sortedList.length; i < n; ++i) {
-
+  for (let i = 0, n = sortedList.length; i < n; i += 1) {
     const item = sortedList[i]
     if (Number.isInteger(item[0] / tickerSize)) {
-      currentPrice = Number(item[0].toFixed(2))/** .toFixed(2)*/
+      currentPrice = Number(item[0].toFixed(2))/** .toFixed(2) */
       currentAmount += item[1]
       currentTickerRange = currentPrice + tickerSize
 
@@ -22,7 +22,6 @@ const TickeredList = (clonedList: number[][], sort: string, tickerSize: number) 
         currentAmount = 0
         currentTickerRange = 0
       }
-
     } else {
       currentPrice = Math.floor(item[0] / tickerSize) * tickerSize
       currentPrice = Number(currentPrice.toFixed(2))
@@ -38,8 +37,8 @@ const TickeredList = (clonedList: number[][], sort: string, tickerSize: number) 
       }
     }
   }
-  if (sort === "DESC") {
-    tickeredList = deepClone(tickeredList.sort(function (x: number[], y: number[]) { return y[0] - x[0] }))
+  if (sort === 'DESC') {
+    tickeredList = deepClone(tickeredList.sort((x: number[], y: number[]) => y[0] - x[0]))
   }
 
   return tickeredList.slice(0, 15)
