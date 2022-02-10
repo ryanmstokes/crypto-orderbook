@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux'
 import { RootState } from 'store'
 import TypedKeys from 'utils/typed-keys'
-import { Price } from 'types'
 
 export const UseLoaded = () => useSelector((state: RootState): boolean => state.lists.loaded)
 
